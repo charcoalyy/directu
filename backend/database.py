@@ -19,17 +19,17 @@ course_collection = db[collection_name]
 def add_course_db(course_code, course_num):
     course_data = {
         "name": "placeholder55",
-        "code": "placeholder",
-        "term": "placeholder",
-        "desc": "placeholder",
+        "code": course_code + course_num,
+        "term": None,
+        "desc": scrape_descriptions(course_code, course_num),
         "score": 0,
-        "matches": ["placeholder"],
         "summary": ["placeholder"],
-        "reviews": ["placeholder"],
-        "status": "added"
+        "reviews": scrape_reviews(course_code + course_num),
+        "status": False
     }
 
     result = course_collection.insert_one(course_data)
     return result
 
-def add_course_review_summary(course_code, course_num):
+def get_all_courses():
+    print(course_collection.find({}, { "code" : 1, "name" : 1, "term" : 1, "status" : 1, "score" : 1, "_id": 0 }))

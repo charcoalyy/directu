@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
+from database import get_all_courses
+
 app=Flask(__name__)
 cors = CORS(app)
 
