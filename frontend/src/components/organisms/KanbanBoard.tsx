@@ -11,6 +11,8 @@ const KanbanBoard = () => {
         direction="column"
         gap="12px"
         sx={{
+          height: "400px",
+          overflowY: "auto",
           marginTop: "4px",
           border: "1px solid grey",
           padding: "12px",
@@ -18,6 +20,7 @@ const KanbanBoard = () => {
           backgroundColor: "lightgrey",
         }}
       >
+        <KanbanItem />
         <KanbanItem />
         <KanbanItem />
       </Flex>
