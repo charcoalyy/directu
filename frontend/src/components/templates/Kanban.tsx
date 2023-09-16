@@ -1,4 +1,5 @@
 import { getCourses } from "@api/courses";
+import { headers } from "@constants/text";
 import useRequest from "@hooks/useRequest";
 import { Flex } from "@mantine/core";
 import PageHeader from "@molecules/PageHeader";
@@ -46,10 +47,8 @@ const Kanban = () => {
       sx={{ padding: "40px", height: "100vh" }}
     >
       <PageHeader
-        title="Your degree for you"
-        desc="Click the course name to view what UWFlow has to say about each
-          course. Click edit to look through your recommended courses and add
-          more."
+        title={headers.dashboard.title}
+        desc={headers.dashboard.desc}
         handleAction={() => navigate("/profile")}
       />
       <Flex

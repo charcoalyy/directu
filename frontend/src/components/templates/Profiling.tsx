@@ -1,4 +1,5 @@
 import { createProfile } from "@api/profile";
+import { headers } from "@constants/text";
 import useRequest from "@hooks/useRequest";
 import { Box, Button, Flex, Grid, Textarea } from "@mantine/core";
 import Heartable from "@molecules/Heartable";
@@ -92,8 +93,10 @@ const Profiling = () => {
         sx={{ padding: "40px", height: "100vh" }}
       >
         <PageHeader
-          title="Let's make your degree for you"
-          desc="kekekkee"
+          // @ts-ignore
+          title={headers[`profiling${currentTab}`].title}
+          // @ts-ignore
+          desc={headers[`profiling${currentTab}`].desc}
           handleAction={() => setCurrentTab(1)}
         />
 
@@ -102,6 +105,7 @@ const Profiling = () => {
         <Flex justify="flex-end" sx={{ width: "100%" }}>
           <Button
             radius="xl"
+            size="xs"
             onClick={() => {
               currentTab === 3
                 ? handleSubmit()
