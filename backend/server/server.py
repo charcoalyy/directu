@@ -17,15 +17,29 @@ def courses():
     if request.method == 'GET':
         user_id = request.args.get('id')
         if user_id:
-            # retrieve list of courses
-            return {"courses": []}
+            course_id = request.args.get('course_id')
+            if course_id:
+                # retrieve details for individual course
+                return {"course": {
+                    "name": "placeholder",
+                    "code": "placeholder",
+                    "term": "placeholder",
+                    "desc": "placeholder",
+                    "score": 0,
+                    "matches": ["placeholder"],
+                    "summary": ["placeholder"],
+                    "reviews": ["placeholder"]
+                }}
+            else:
+                # retrieve list of pure course names
+                return {"courses": ["one", "two", "three", "four", "five", "six", "seven"]}
         else:
             return bad_request("Missing user ID")
     elif request.method == 'POST':
         data = request.get_json()
         if data['id'] and data['course']:
             # update doc corresponding to data['course'] status with added or not added --> return doc updated
-            return {"updated": []}
+            return {"updated": "39459"}
         else:
             return bad_request("Missing user ID and/or course ID")
         

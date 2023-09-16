@@ -6,6 +6,7 @@ interface KanbanItemProps extends Openable {
   i: string;
   handleSelect: (s: string) => void;
   board: boolean;
+  data: any;
   disabled?: boolean;
 }
 
@@ -13,9 +14,13 @@ const KanbanItem = ({
   i,
   setOpen,
   handleSelect,
+  data,
   board,
   disabled,
 }: KanbanItemProps) => {
+  // use this to define items
+  console.log(data);
+
   return (
     <Flex
       direction="column"

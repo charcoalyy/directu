@@ -1,27 +1,17 @@
-import { updateCourse } from "@api/courses";
-import { createProfile } from "@api/profile";
+import { getCourses } from "@api/courses";
 import useRequest from "@hooks/useRequest";
 import { Box } from "@mantine/core";
-import Details from "@templates/Details";
 import Kanban from "@templates/Kanban";
-import { useState } from "react";
 
 const Dashboard = () => {
-  const [open, setOpen] = useState<string | null>(null);
-
+  // parse into object where each key is a school term
   const { data } = useRequest({
-    request: createProfile,
+    request: getCourses,
     requestByDefault: true,
-    params: { id: "30513", body: "304331" },
+    params: { id: "user" },
   });
-  console.log(data);
 
-  return (
-    <Box>
-      <Details open={!!open} setClose={() => setOpen(null)} />
-      <Kanban setOpen={setOpen} />
-    </Box>
-  );
+  return <Box>{data && <Kanban data={data.courses} />}</Box>;
 };
 
 export default Dashboard;

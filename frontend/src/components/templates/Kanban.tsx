@@ -1,10 +1,9 @@
-import { Openable } from "@constants/details";
 import { Flex } from "@mantine/core";
 import PageHeader from "@molecules/PageHeader";
 import KanbanBoard from "@organisms/KanbanBoard";
 import { useNavigate } from "react-router-dom";
 
-const Kanban = ({ setOpen }: Openable) => {
+const Kanban = ({ data }: { data: any }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,8 +23,8 @@ const Kanban = ({ setOpen }: Openable) => {
         gap="10px"
         sx={{ width: "92vw", overflowX: "auto", padding: "8px" }}
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-          <KanbanBoard key={i} setOpen={setOpen} />
+        {data.map((d: any) => (
+          <KanbanBoard key={d} data={d} />
         ))}
       </Flex>
     </Flex>
