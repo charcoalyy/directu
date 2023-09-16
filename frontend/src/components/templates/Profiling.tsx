@@ -1,3 +1,5 @@
+import { createProfile } from "@api/profile";
+import useRequest from "@hooks/useRequest";
 import { Box, Button, Flex, Grid, Textarea } from "@mantine/core";
 import Heartable from "@molecules/Heartable";
 import PageHeader from "@molecules/PageHeader";
@@ -22,6 +24,12 @@ const Profiling = () => {
     "12",
   ];
   const [selected, setSelected] = useState([] as string[]);
+  const [text, setText] = useState("");
+
+  const { makeRequest } = useRequest({
+    request: createProfile,
+    requestByDefault: false,
+  });
 
   const handleSelect = (current: string) => {
     setSelected((prev) =>
@@ -29,6 +37,20 @@ const Profiling = () => {
         ? prev.filter((s) => s != current)
         : [...prev, current]
     );
+  };
+
+  const handleSubmit = () => {
+    const body = "Career interests include "
+      .concat(selected.join(", "))
+      .concat(". ")
+      .concat(text);
+
+    makeRequest({
+      id: "user",
+      body: body,
+    });
+
+    navigate("/dashboard");
   };
 
   const tab = useMemo(() => {
@@ -50,9 +72,16 @@ const Profiling = () => {
       case 2:
       case 3:
       default:
-        return <Textarea placeholder="Give us all the details" minRows={15} />;
+        return (
+          <Textarea
+            placeholder="Give us all the details"
+            minRows={15}
+            value={text}
+            onChange={(e) => setText(e.currentTarget.value)}
+          />
+        );
     }
-  }, [currentTab, selected]);
+  }, [currentTab, selected, text]);
   return (
     <Box>
       <Flex
@@ -73,7 +102,7 @@ const Profiling = () => {
             radius="xl"
             onClick={() => {
               currentTab === 3
-                ? navigate("/dashboard")
+                ? handleSubmit()
                 : setCurrentTab((prev) => (prev !== 3 ? prev + 1 : prev));
             }}
           >

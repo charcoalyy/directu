@@ -47,7 +47,7 @@ def courses():
 def profile():
     data = request.get_json()
     if data['id']:
-        # run through data model with data['body'] --> generate list of  courses --> save to database as collection
+        # run through data model with data['body'] --> generate list of courses --> save to database as collection
         return {"created": data['id']}
     else:
         return bad_request("Missing user ID")

@@ -17,7 +17,7 @@ const Kanban = ({ data }: { data: any }) => {
         desc="Click the course name to view what UWFlow has to say about each
           course. Click edit to look through your recommended courses and add
           more."
-        handleAction={() => navigate("/profiling")}
+        handleAction={() => navigate("/profile")}
       />
       <Flex
         gap="10px"
