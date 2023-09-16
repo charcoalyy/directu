@@ -13,7 +13,7 @@ const KanbanItem = () => {
       }}
     >
       <Group>
-        <Flex justify="space-between" align="center">
+        <Flex sx={{ width: "100%" }} justify="space-between" align="center">
           <Badge size="xs">Placeholder</Badge>
           <ActionIcon size="xs" radius="lg">
             <IconDotsVertical />

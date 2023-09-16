@@ -1,10 +1,10 @@
 import { Box } from "@mantine/core";
-import KanbanBoard from "@organisms/KanbanBoard";
+import Kanban from "@templates/Kanban";
 
 const Home = () => {
   return (
-    <Box sx={{ backgroundColor: "red", height: "100vh" }}>
-      <KanbanBoard />
+    <Box>
+      <Kanban />
     </Box>
   );
 };
