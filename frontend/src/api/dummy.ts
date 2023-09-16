@@ -1,4 +1,12 @@
 import { get, post } from "./fetchRequests";
+const baseURL = import.meta.env.VITE_BASE_URL;
+
+export const dummyGet = async () => {
+  const data = await get({
+    url: `${baseURL}/dummy`,
+  });
+  return data;
+};
 
 interface placeholderGetProps {
   params: { postId?: string };
