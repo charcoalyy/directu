@@ -38,7 +38,7 @@ const Edit = ({
             data={c}
             board={false}
             disabled={selected.includes(c)}
-            key={c.name}
+            key={c.code}
             handleSelect={handleSelect}
           />
         ))}
