@@ -1,20 +1,22 @@
 import { ActionIcon, Flex, Text } from "@mantine/core";
 import { IconReload } from "@tabler/icons-react";
 
-const PageHeader = () => {
+interface PageHeaderProps {
+  title: string;
+  desc: string;
+  handleAction: () => void;
+}
+
+const PageHeader = ({ title, desc, handleAction }: PageHeaderProps) => {
   return (
-    <Flex justify="space-between" align="center">
+    <Flex justify="space-between" gap="60px" align="center">
       <Flex direction="column">
         <Text fz="xl" fw={700}>
-          Your degree for you.
+          {title}
         </Text>
-        <Text fz="xs">
-          Click the course name to view what UWFlow has to say about each
-          course. Click edit to look through your recommended courses and add
-          more.
-        </Text>
+        <Text fz="xs">{desc}</Text>
       </Flex>
-      <ActionIcon>
+      <ActionIcon onClick={handleAction}>
         <IconReload />
       </ActionIcon>
     </Flex>

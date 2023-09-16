@@ -26,13 +26,13 @@ const Edit = ({
       overlayProps={{ opacity: 0.5 }}
     >
       <Text fz="xl" fw={700}>
-        Title
+        XX
       </Text>
       <Text fz="xs">
         These are the courses recommended to you for this term.
       </Text>
 
-      <Flex direction="column" gap="8px">
+      <Flex direction="column" gap="8px" sx={{ marginTop: "16px" }}>
         {courses.map((c) => (
           <KanbanItem
             board={false}
