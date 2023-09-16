@@ -46,9 +46,11 @@ const KanbanItem = ({
       <Group onClick={setOpen} sx={{ cursor: "pointer" }}>
         <Flex direction="column">
           <Text color="#414141" fz="xs" fw={600}>
+            {data.code.toUpperCase()}
+          </Text>
+          <Text color="#414141" sx={{ fontSize: "10px" }}>
             {data.name}
           </Text>
-          <Text color="#414141" sx={{ fontSize: "10px" }}>{data.name}</Text>
         </Flex>
       </Group>
     </Flex>

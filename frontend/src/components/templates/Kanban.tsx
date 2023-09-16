@@ -24,18 +24,23 @@ const Kanban = () => {
           dict: { [key: string]: any[] },
           course: {
             name: string;
+            code: string;
             term: string;
             status: string;
           }
         ) => {
-          if (!Object.keys(dict).includes(course.term)) {
-            dict[course.term] = [course];
-          } else {
-            dict[course.term].push(course);
-          }
+          // if (!Object.keys(dict).includes(course.term)) {
+          //   dict[course.term] = [course];
+          // } else {
+          //   dict[course.term].push(course);
+          // }
+          // console.log(dict);
+          // TODO: hardcode in terms
+
+          dict.temporary.push(course);
           return dict;
         },
-        {}
+        { temporary: [] }
       )
     );
   }, [data]);
