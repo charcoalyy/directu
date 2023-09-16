@@ -20,24 +20,19 @@ def scrape_reviews(course):
 
     show_all_button.click()
 
-    MAX_CHARS = 20_000
+    MAX_REVIEWS = 60
 
     review_array = []
-    num_chars = 0
 
     review_containers = driver.find_elements(By.TAG_NAME, "table")
     review_containers_parents =  [review_container.find_element(By.XPATH, "..") for review_container in review_containers]
-    for review_container_parent in review_containers_parents:
+    for i in range(min(MAX_REVIEWS, len(review_containers_parents))):
+        review_container_parent = review_containers_parents[i]
+        
         review = review_container_parent.find_element(By.XPATH, "./*[2]").find_element(By.XPATH, "./*[1]")
         review_text = review.text
-        if num_chars + len(review_text) > MAX_CHARS:
-            break
         review_array.append(review_text)
-        num_chars += len(review_text)
 
-    # review_json_name = "".join([course, "_uwflow", "_reviews.json"])
-    # with open(review_json_name, 'w') as f:
-    #    json.dump(review_array, f)
 
     driver.close()
     return review_array
