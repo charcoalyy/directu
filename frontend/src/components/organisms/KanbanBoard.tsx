@@ -1,28 +1,63 @@
-import { Openable } from "@constants/details";
+import { getCourses, updateCourse } from "@api/courses";
+import useRequest from "@hooks/useRequest";
 import { ActionIcon, Badge, Box, Flex } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
 import { IconEdit } from "@tabler/icons-react";
+import Details from "@templates/Details";
 import Edit from "@templates/Edit";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-const KanbanBoard = ({ setOpen }: Openable) => {
-  const courses = ["A", "B", "C"];
-  const [selected, setSelected] = useState(["A", "C"]);
+const KanbanBoard = ({
+  data,
+  refreshCourses,
+}: {
+  data: any;
+  refreshCourses: () => void;
+}) => {
+  const [open, setOpen] = useState<string | null>(null);
   const [edit, setEdit] = useState(false);
 
-  const handleSelect = (current: string) => {
-    setSelected((prev) =>
-      prev.includes(current)
-        ? prev.filter((s) => s != current)
-        : [...prev, current]
-    );
+  const { data: detailsData, makeRequest } = useRequest({
+    request: getCourses,
+    requestByDefault: false,
+  });
+
+  const { makeRequest: makeUpdateRequest } = useRequest({
+    request: updateCourse,
+    requestByDefault: false,
+  });
+
+  // requests review details for a course
+  const handleOpen = (current: string) => {
+    setOpen((prev) => (prev === current ? null : current));
+    makeRequest({ id: "user", course_id: current });
   };
+
+  // updates status of item as added or not added to board
+  const handleSelect = async (current: string, action: "delete" | "add") => {
+    console.log("we are trying to ", action);
+    await makeUpdateRequest({
+      id: "user",
+      course: current,
+      status: action === "add" ? "added" : "not added",
+    });
+    refreshCourses();
+  };
+
+  const selected = useMemo(() => {
+    return data.filter((c: any) => c.status === "added");
+  }, [data]);
 
   return (
     <Box>
+      <Details
+        open={!!open}
+        setClose={() => setOpen(null)}
+        data={detailsData}
+      />
       <Edit
         open={edit}
-        courses={courses}
+        courses={data}
         selected={selected}
         setClose={() => setEdit(false)}
         handleSelect={handleSelect}
@@ -49,12 +84,12 @@ const KanbanBoard = ({ setOpen }: Openable) => {
           backgroundColor: "lightgrey",
         }}
       >
-        {selected.map((i) => (
+        {selected.map((c: any) => (
           <KanbanItem
-            key={i}
+            key={c.name}
+            data={c}
             board={true}
-            i={i.toString()}
-            setOpen={setOpen}
+            setOpen={() => handleOpen(c.name)}
             handleSelect={handleSelect}
           />
         ))}

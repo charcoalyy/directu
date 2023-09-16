@@ -5,9 +5,12 @@ import DetailsTabs from "@organisms/DetailsTabs";
 interface DetailsProps {
   open: boolean;
   setClose: () => void;
+  data: any;
 }
 
-const Details = ({ open, setClose }: DetailsProps) => {
+const Details = ({ open, setClose, data }: DetailsProps) => {
+  // parse data
+
   return (
     <Drawer
       padding="xl"
