@@ -10,7 +10,7 @@ interface DetailsProps {
 
 const Details = ({ open, setClose, data }: DetailsProps) => {
   // parse data
-  console.log(data);
+
   return (
     <Drawer
       padding="xl"

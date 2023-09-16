@@ -1,12 +1,13 @@
-import { Openable } from "@constants/details";
 import { ActionIcon, Badge, Flex, Group, Text } from "@mantine/core";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 
-interface KanbanItemProps extends Openable {
+interface KanbanItemProps {
   i: string;
+
   handleSelect: (s: string) => void;
   board: boolean;
   data: any;
+  setOpen?: () => void;
   disabled?: boolean;
 }
 
@@ -18,8 +19,7 @@ const KanbanItem = ({
   board,
   disabled,
 }: KanbanItemProps) => {
-  // use this to define items
-  console.log(data);
+  // use data to define items
 
   return (
     <Flex
@@ -46,7 +46,7 @@ const KanbanItem = ({
           </ActionIcon>
         </Flex>
       </Group>
-      <Group onClick={() => setOpen && setOpen(i)}>
+      <Group onClick={setOpen}>
         <Flex direction="column">
           <Text fz="xs" fw={600}>
             Placeholder

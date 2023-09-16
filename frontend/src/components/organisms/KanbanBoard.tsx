@@ -1,4 +1,4 @@
-import { getCourses } from "@api/courses";
+import { getCourses, updateCourse } from "@api/courses";
 import useRequest from "@hooks/useRequest";
 import { ActionIcon, Badge, Box, Flex } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
@@ -9,7 +9,9 @@ import { useState } from "react";
 
 const KanbanBoard = ({ data }: { data: any }) => {
   const [open, setOpen] = useState<string | null>(null);
+  // courses should be data
   const courses = ["A", "B", "C"];
+  // get selected ones from data
   const [selected, setSelected] = useState(["A", "C"]);
   const [edit, setEdit] = useState(false);
 
@@ -18,13 +20,29 @@ const KanbanBoard = ({ data }: { data: any }) => {
     requestByDefault: false,
   });
 
+  const { makeRequest: makeUpdateRequest } = useRequest({
+    request: updateCourse,
+    requestByDefault: false,
+  });
+
+  // requests review details for a course
+  const handleOpen = (current: string) => {
+    setOpen((prev) => (prev === current ? null : current));
+    makeRequest({ id: "user", course_id: current });
+  };
+
+  // updates status of item as added or not added to board
   const handleSelect = (current: string) => {
+    makeUpdateRequest({
+      id: "user",
+      course: current,
+      status: selected.includes(current) ? "not added" : "added",
+    });
     setSelected((prev) =>
       prev.includes(current)
         ? prev.filter((s) => s != current)
         : [...prev, current]
     );
-    makeRequest({ id: "user", course_id: current });
   };
 
   return (
@@ -36,7 +54,7 @@ const KanbanBoard = ({ data }: { data: any }) => {
       />
       <Edit
         open={edit}
-        courses={courses}
+        courses={courses} // get this from data
         selected={selected}
         setClose={() => setEdit(false)}
         handleSelect={handleSelect}
@@ -69,7 +87,7 @@ const KanbanBoard = ({ data }: { data: any }) => {
             data={data}
             board={true}
             i={i.toString()}
-            setOpen={setOpen}
+            setOpen={() => handleOpen(i)}
             handleSelect={handleSelect}
           />
         ))}

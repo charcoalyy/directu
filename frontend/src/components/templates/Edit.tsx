@@ -35,6 +35,7 @@ const Edit = ({
       <Flex direction="column" gap="8px" sx={{ marginTop: "16px" }}>
         {courses.map((c) => (
           <KanbanItem
+            data={c}
             board={false}
             disabled={selected.includes(c)}
             key={c}
