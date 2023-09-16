@@ -1,6 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-
+from scrape import scrape_reviews, scrape_descriptions
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -16,12 +16,20 @@ db = client['course_database']
 collection_name = "course_collection"
 course_collection = db[collection_name]
 
-course_data = {
-    "course_code": "cs136",
-    "course_description": "hi",
-    "student_review_summary": "test",
-    "top_reviews": "top",
-    "similarity_score": 1.3
-}
+def add_course_db(course_code, course_num):
+    course_data = {
+        "name": "placeholder55",
+        "code": "placeholder",
+        "term": "placeholder",
+        "desc": "placeholder",
+        "score": 0,
+        "matches": ["placeholder"],
+        "summary": ["placeholder"],
+        "reviews": ["placeholder"],
+        "status": "added"
+    }
 
-result = course_collection.insert_one(course_data)
+    result = course_collection.insert_one(course_data)
+    return result
+
+def add_course_review_summary(course_code, course_num):

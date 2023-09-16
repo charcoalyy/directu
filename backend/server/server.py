@@ -8,10 +8,6 @@ cors = CORS(app)
 def bad_request(e):
     return jsonify(e), 400
 
-@app.route("/dummy")
-def dummy():
-    return {"message": "this is functioning?"}
-
 @app.route("/courses", methods=["GET", "POST"])
 def courses():
     if request.method == 'GET':

@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
 
+
 response = requests.get("http://www.uwflow.com")
 soup = BeautifulSoup(response.text, 'html.parser')
 

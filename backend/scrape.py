@@ -52,7 +52,6 @@ def scrape_descriptions(course_subject, course_num):
     description = response_json[0]["description"]
     return description
 
-
 course_subject = "cs"
 course_num = "146"
 course_info = {}
