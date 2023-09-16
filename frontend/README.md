@@ -1,6 +1,6 @@
-# React + TypeScript + Vite Starter
+# Course Tool (Pending Name)
 
-This template provides a custom setup to get React working in Vite with HMR and some ESLint rules.
+This user interface allows students to send in reviews and faculty to get action items based on student reviews.
 
 ## Development
 
