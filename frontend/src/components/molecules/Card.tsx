@@ -24,13 +24,13 @@ const Card = () => {
           width: "200px",
           border: "1px solid grey",
           borderRadius: "7.5px",
-          backgroundColor: "lightgrey",
+          backgroundColor: "#F1F1F1",
           opacity: opacity,
         }}
       >
         <CardInfo />
       </Flex>
-      <Text> {clickedOrder}</Text>
+      <Text color="#414141"> {clickedOrder}</Text>
     </Box>
   );
 };

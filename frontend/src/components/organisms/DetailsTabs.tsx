@@ -13,7 +13,7 @@ const DetailsTabs = () => {
       case "reviews":
         return (
           <Tabs.Panel value="reviews">
-            <Flex direction="column" gap="12px" sx={{ marginTop: "12px" }}>
+            <Flex direction="column" color="#F1F1F1" gap="12px" sx={{ marginTop: "12px" }}>
               {[1, 2].map((i) => (
                 <DataList key={i} />
               ))}
@@ -23,7 +23,7 @@ const DetailsTabs = () => {
       case "summary":
         return (
           <Tabs.Panel value="summary">
-            <Flex direction="column" gap="4px" sx={{ marginTop: "12px" }}>
+            <Flex color="#F1F1F1" direction="column" gap="4px" sx={{ marginTop: "12px" }}>
               {[1, 2, 3, 4].map((i) => (
                 <Checkbox key={i} />
               ))}
@@ -38,8 +38,8 @@ const DetailsTabs = () => {
   return (
     <Tabs value={activeTab} onTabChange={setActiveTab}>
       <Tabs.List grow>
-        <Tabs.Tab value="summary">REVIEW SUMMARY</Tabs.Tab>
-        <Tabs.Tab value="reviews">TOP REVIEWS</Tabs.Tab>
+        <Tabs.Tab color="#414141"  value="summary">REVIEW SUMMARY</Tabs.Tab>
+        <Tabs.Tab color="#414141" value="reviews">TOP REVIEWS</Tabs.Tab>
       </Tabs.List>
 
       {tabsContent}

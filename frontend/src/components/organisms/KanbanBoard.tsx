@@ -78,10 +78,10 @@ const KanbanBoard = ({
           width: "220px",
           overflowY: "auto",
           marginTop: "4px",
-          border: "1px solid grey",
+          border: "1px #E0E0E0",
           padding: "12px",
           borderRadius: "7.5px",
-          backgroundColor: "lightgrey",
+          backgroundColor: "#F1F1F1",
         }}
       >
         {selected.map((c: any) => (

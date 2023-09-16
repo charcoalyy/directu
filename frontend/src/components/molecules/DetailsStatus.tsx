@@ -12,7 +12,7 @@ const DetailsStatus = () => {
     >
       <Grid align="center">
         <Grid.Col span={2}>
-          <Text fz="sm" fw={500}>
+          <Text color="#414141" fz="sm" fw={500}>
             Score
           </Text>
         </Grid.Col>
@@ -23,7 +23,7 @@ const DetailsStatus = () => {
 
       <Grid align="center">
         <Grid.Col span={2}>
-          <Text fz="sm" fw={500}>
+          <Text color="#414141" fz="sm" fw={500}>
             Matches
           </Text>
         </Grid.Col>

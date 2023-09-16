@@ -45,10 +45,10 @@ const KanbanItem = ({
       </Group>
       <Group onClick={setOpen}>
         <Flex direction="column">
-          <Text fz="xs" fw={600}>
+          <Text color="#414141" fz="xs" fw={600}>
             {data.name}
           </Text>
-          <Text sx={{ fontSize: "10px" }}>Duis aute irure dolor</Text>
+          <Text color="#414141" sx={{ fontSize: "10px" }}>Duis aute irure dolor</Text>
         </Flex>
       </Group>
     </Flex>

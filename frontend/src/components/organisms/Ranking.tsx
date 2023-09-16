@@ -16,15 +16,15 @@ const Rank = () => {
         }}
       >
         <Group>
-          <Text>Placeholder</Text>
+          <Text color="#414141" >Placeholder</Text>
           <Demo />
         </Group>
         <Group>
-          <Text>Placeholder</Text>
+          <Text color="#414141" >Placeholder</Text>
           <Demo />
         </Group>
         <Group>
-          <Text>Placeholder</Text>
+          <Text color="#414141" >Placeholder</Text>
           <Demo />
         </Group>
       </Group>

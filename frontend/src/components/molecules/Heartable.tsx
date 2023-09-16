@@ -16,7 +16,7 @@ const Heartable = ({
       align="center"
       gap="20px"
       sx={{
-        background: "lightgrey",
+        background: "#F1F1F1",
         borderRadius: "5px",
         padding: "12px",
         cursor: "pointer",
@@ -28,7 +28,7 @@ const Heartable = ({
           {selected.includes(id) ? <IconHeartFilled /> : <IconHeart />}
         </ActionIcon>
       </Flex>
-      <Text fz="sm">Lorem ipsum</Text>
+      <Text color="#414141" fz="sm">Lorem ipsum</Text>
     </Flex>
   );
 };

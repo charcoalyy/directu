@@ -20,10 +20,10 @@ const Details = ({ open, setClose, data }: DetailsProps) => {
       title="COURSE DETAILS"
       overlayProps={{ opacity: 0.5, blur: 1 }}
     >
-      <Text fz="xl" fw={700}>
+      <Text color="#414141" fz="xl" fw={700}>
         Title
       </Text>
-      <Text fz="xs">
+      <Text color="#414141" fz="xs">
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
         dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
