@@ -1,4 +1,5 @@
 import requests
+from database import add_course_db
 
 url_cs = "https://openapi.data.uwaterloo.ca/v3/Courses/1239/cs"
 url_math = "https://openapi.data.uwaterloo.ca/v3/Courses/1239/math"
@@ -16,3 +17,8 @@ course_dict["cs"] = [x["catalogNumber"] for x in list_cs]
 course_dict["math"] = [x["catalogNumber"] for x in list_math]
 course_dict["stat"] = [x["catalogNumber"] for x in list_stat]
 print(course_dict)
+
+for key in course_dict:
+    for course in course_dict[key]:
+        add_course_db(key, course)
+        break
