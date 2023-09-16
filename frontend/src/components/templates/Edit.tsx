@@ -2,11 +2,11 @@ import { Drawer, Flex, Text } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
 
 interface DetailsProps {
-  courses: string[];
+  courses: any[];
   selected: string[];
   open: boolean;
   setClose: () => void;
-  handleSelect: (s: string) => void;
+  handleSelect: (s: string, a: "delete" | "add") => void;
 }
 
 const Edit = ({
@@ -38,8 +38,7 @@ const Edit = ({
             data={c}
             board={false}
             disabled={selected.includes(c)}
-            key={c}
-            i={c}
+            key={c.name}
             handleSelect={handleSelect}
           />
         ))}

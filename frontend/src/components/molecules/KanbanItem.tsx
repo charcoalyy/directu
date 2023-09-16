@@ -2,9 +2,7 @@ import { ActionIcon, Badge, Flex, Group, Text } from "@mantine/core";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 
 interface KanbanItemProps {
-  i: string;
-
-  handleSelect: (s: string) => void;
+  handleSelect: (s: string, a: "delete" | "add") => void;
   board: boolean;
   data: any;
   setOpen?: () => void;
@@ -12,15 +10,12 @@ interface KanbanItemProps {
 }
 
 const KanbanItem = ({
-  i,
   setOpen,
   handleSelect,
   data,
   board,
   disabled,
 }: KanbanItemProps) => {
-  // use data to define items
-
   return (
     <Flex
       direction="column"
@@ -36,11 +31,13 @@ const KanbanItem = ({
     >
       <Group>
         <Flex sx={{ width: "100%" }} justify="space-between" align="center">
-          <Badge size="xs">Placeholder</Badge>
+          <Badge size="xs">badge</Badge>
           <ActionIcon
             size="xs"
             radius="lg"
-            onClick={() => !disabled && handleSelect(i)}
+            onClick={() =>
+              !disabled && handleSelect(data.name, board ? "delete" : "add")
+            }
           >
             {board ? <IconMinus /> : !disabled && <IconPlus />}
           </ActionIcon>
@@ -49,7 +46,7 @@ const KanbanItem = ({
       <Group onClick={setOpen}>
         <Flex direction="column">
           <Text fz="xs" fw={600}>
-            Placeholder
+            {data.name}
           </Text>
           <Text sx={{ fontSize: "10px" }}>Duis aute irure dolor</Text>
         </Flex>

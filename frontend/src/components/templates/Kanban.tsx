@@ -1,10 +1,43 @@
+import { getCourses } from "@api/courses";
+import useRequest from "@hooks/useRequest";
 import { Flex } from "@mantine/core";
 import PageHeader from "@molecules/PageHeader";
 import KanbanBoard from "@organisms/KanbanBoard";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Kanban = ({ data }: { data: any }) => {
+const Kanban = () => {
   const navigate = useNavigate();
+
+  const { data, makeRequest } = useRequest({
+    request: getCourses,
+    requestByDefault: true,
+    params: { id: "user" },
+  });
+
+  const parsedData = useMemo(() => {
+    return (
+      data &&
+      data.courses.reduce(
+        (
+          dict: { [key: string]: any[] },
+          course: {
+            name: string;
+            term: string;
+            status: string;
+          }
+        ) => {
+          if (!Object.keys(dict).includes(course.term)) {
+            dict[course.term] = [course];
+          } else {
+            dict[course.term].push(course);
+          }
+          return dict;
+        },
+        {}
+      )
+    );
+  }, [data]);
 
   return (
     <Flex
@@ -23,9 +56,14 @@ const Kanban = ({ data }: { data: any }) => {
         gap="10px"
         sx={{ width: "92vw", overflowX: "auto", padding: "8px" }}
       >
-        {data.map((d: any) => (
-          <KanbanBoard key={d} data={d} />
-        ))}
+        {parsedData &&
+          Object.entries(parsedData).map(([term, courses]) => (
+            <KanbanBoard
+              key={term}
+              data={courses}
+              refreshCourses={() => makeRequest({ id: "user" })}
+            />
+          ))}
       </Flex>
     </Flex>
   );

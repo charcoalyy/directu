@@ -5,14 +5,16 @@ import KanbanItem from "@molecules/KanbanItem";
 import { IconEdit } from "@tabler/icons-react";
 import Details from "@templates/Details";
 import Edit from "@templates/Edit";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-const KanbanBoard = ({ data }: { data: any }) => {
+const KanbanBoard = ({
+  data,
+  refreshCourses,
+}: {
+  data: any;
+  refreshCourses: () => void;
+}) => {
   const [open, setOpen] = useState<string | null>(null);
-  // courses should be data
-  const courses = ["A", "B", "C"];
-  // get selected ones from data
-  const [selected, setSelected] = useState(["A", "C"]);
   const [edit, setEdit] = useState(false);
 
   const { data: detailsData, makeRequest } = useRequest({
@@ -32,18 +34,19 @@ const KanbanBoard = ({ data }: { data: any }) => {
   };
 
   // updates status of item as added or not added to board
-  const handleSelect = (current: string) => {
-    makeUpdateRequest({
+  const handleSelect = async (current: string, action: "delete" | "add") => {
+    console.log("we are trying to ", action);
+    await makeUpdateRequest({
       id: "user",
       course: current,
-      status: selected.includes(current) ? "not added" : "added",
+      status: action === "add" ? "added" : "not added",
     });
-    setSelected((prev) =>
-      prev.includes(current)
-        ? prev.filter((s) => s != current)
-        : [...prev, current]
-    );
+    refreshCourses();
   };
+
+  const selected = useMemo(() => {
+    return data.filter((c: any) => c.status === "added");
+  }, [data]);
 
   return (
     <Box>
@@ -54,7 +57,7 @@ const KanbanBoard = ({ data }: { data: any }) => {
       />
       <Edit
         open={edit}
-        courses={courses} // get this from data
+        courses={data}
         selected={selected}
         setClose={() => setEdit(false)}
         handleSelect={handleSelect}
@@ -81,13 +84,12 @@ const KanbanBoard = ({ data }: { data: any }) => {
           backgroundColor: "lightgrey",
         }}
       >
-        {selected.map((i) => (
+        {selected.map((c: any) => (
           <KanbanItem
-            key={i}
-            data={data}
+            key={c.name}
+            data={c}
             board={true}
-            i={i.toString()}
-            setOpen={() => handleOpen(i)}
+            setOpen={() => handleOpen(c.name)}
             handleSelect={handleSelect}
           />
         ))}

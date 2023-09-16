@@ -21,7 +21,7 @@ def courses():
             if course_id:
                 # retrieve details for individual course
                 return {"course": {
-                    "name": "placeholder",
+                    "name": "placeholder55",
                     "code": "placeholder",
                     "term": "placeholder",
                     "desc": "placeholder",
@@ -31,8 +31,19 @@ def courses():
                     "reviews": ["placeholder"]
                 }}
             else:
-                # retrieve list of pure course names
-                return {"courses": ["one", "two", "three", "four", "five", "six", "seven"]}
+                # retrieve list of pure course names & term
+                return {"courses": [
+                    {"name": "placeholder1","term": "1", "status": "added"},
+                    {"name": "placeholder2","term": "1", "status": "added"},
+                    {"name": "placeholder3","term": "2", "status": "not added"},
+                    {"name": "placeholder4","term": "2", "status": "added"},
+                    {"name": "placeholder5","term": "3", "status": "added"},
+                    {"name": "placeholder6","term": "3", "status": "not added"},
+                    {"name": "placeholder7","term": "4", "status": "not added"},
+                    {"name": "placeholder8","term": "4", "status": "not added"},
+                    {"name": "placeholder9","term": "5", "status": "added"},
+                    {"name": "placeholder99","term": "5", "status": "not added"}
+                ]}
         else:
             return bad_request("Missing user ID")
     elif request.method == 'POST':
