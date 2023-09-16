@@ -22,7 +22,6 @@ const KanbanBoard = () => {
       >
         <KanbanItem />
         <KanbanItem />
-        <KanbanItem />
       </Flex>
     </Box>
   );
