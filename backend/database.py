@@ -23,7 +23,7 @@ def add_course_db(course_code, course_num):
         "term": None,
         "desc": scrape_descriptions(course_code, course_num),
         "score": 0,
-        "summary": ["placeholder"],
+        "summary": [],
         "reviews": scrape_reviews(course_code + course_num),
         "status": False
     }
