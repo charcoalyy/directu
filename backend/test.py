@@ -1,2 +1,4 @@
-from database import add_course_db, get
-add_course_db("cs", "246")
+from database import get_all_courses
+
+def test_get_all_courses():
+    print(get_all_courses())
