@@ -1,5 +1,5 @@
 import { Openable } from "@constants/details";
-import { Flex, Grid } from "@mantine/core";
+import { Flex } from "@mantine/core";
 import PageHeader from "@molecules/PageHeader";
 import KanbanBoard from "@organisms/KanbanBoard";
 
@@ -7,18 +7,19 @@ const Kanban = ({ setOpen }: Openable) => {
   return (
     <Flex
       direction="column"
-      gap="20px"
+      gap="10px"
       justify="center"
       sx={{ padding: "40px", height: "100vh" }}
     >
       <PageHeader />
-      <Grid>
-        {[1, 2, 3, 4].map((i) => (
-          <Grid.Col key={i} span={3}>
-            <KanbanBoard setOpen={setOpen} />
-          </Grid.Col>
+      <Flex
+        gap="10px"
+        sx={{ width: "92vw", overflowX: "auto", padding: "8px" }}
+      >
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <KanbanBoard key={i} setOpen={setOpen} />
         ))}
-      </Grid>
+      </Flex>
     </Flex>
   );
 };

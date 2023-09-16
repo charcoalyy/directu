@@ -11,27 +11,27 @@ const DetailsStatus = () => {
       }}
     >
       <Grid align="center">
-        <Grid.Col span={3}>
+        <Grid.Col span={2}>
           <Text fz="sm" fw={500}>
-            Status
+            Score
           </Text>
         </Grid.Col>
-        <Grid.Col span={9}>
-          <Badge>yee</Badge>
+        <Grid.Col span={10}>
+          <Badge>80</Badge>
         </Grid.Col>
       </Grid>
 
       <Grid align="center">
-        <Grid.Col span={3}>
+        <Grid.Col span={2}>
           <Text fz="sm" fw={500}>
-            Timeline
+            Matches
           </Text>
         </Grid.Col>
-        <Grid.Col span={9}>
+        <Grid.Col span={10}>
           <Flex gap="4px">
-            <Badge>yee</Badge>
-            <Text fz="xs">to</Text>
-            <Badge>yee</Badge>
+            <Badge>group work</Badge>
+            <Badge>AI field</Badge>
+            <Badge>no exams</Badge>
           </Flex>
         </Grid.Col>
       </Grid>

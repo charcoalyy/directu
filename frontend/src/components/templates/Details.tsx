@@ -14,7 +14,7 @@ const Details = ({ open, setClose }: DetailsProps) => {
       opened={open}
       position="right"
       onClose={setClose}
-      title="ITEM DETAILS"
+      title="COURSE DETAILS"
       overlayProps={{ opacity: 0.5, blur: 1 }}
     >
       <Text fz="xl" fw={700}>

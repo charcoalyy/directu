@@ -1,12 +1,15 @@
-import { Flex, Select, Text } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 
 const PageHeader = () => {
   return (
-    <Flex direction="column" sx={{ width: "200px" }}>
+    <Flex direction="column">
       <Text fz="xl" fw={700}>
-        Title
+        Your degree for you.
       </Text>
-      <Select placeholder="Select a course" data={["1", "2"]}></Select>
+      <Text fz="xs">
+        Click to view what UWFlow has to say about each course. Add and drop
+        into your terms as needed.
+      </Text>
     </Flex>
   );
 };
