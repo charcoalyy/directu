@@ -12,31 +12,29 @@ def scrape_reviews(course):
     driver.get(f"https://uwflow.com/course/{course}")
 
     try:
-        show_all_button = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//*[starts-with(text(), 'Show all')]")))
+        show_all_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[starts-with(text(), 'Show all')]")))
         driver.execute_script("arguments[0].scrollIntoView();", show_all_button)
-        show_all_button = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//*[starts-with(text(), 'Show all')]")))
-        show_all_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[starts-with(text(), 'Show all')]")))
+        show_all_button = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//*[starts-with(text(), 'Show all')]")))
+        show_all_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[starts-with(text(), 'Show all')]")))
         time.sleep(1)
         show_all_button.click()
     finally:
+        MAX_REVIEWS = 60
+
+        review_array = []
+
+        review_containers = driver.find_elements(By.TAG_NAME, "table")
+        review_containers_parents =  [review_container.find_element(By.XPATH, "..") for review_container in review_containers]
+        for i in range(min(MAX_REVIEWS, len(review_containers_parents))):
+            review_container_parent = review_containers_parents[i]
+            
+            review = review_container_parent.find_element(By.XPATH, "./*[2]").find_element(By.XPATH, "./*[1]")
+            review_text = review.text
+            review_array.append(review_text)
+
+
         driver.close()
-
-    MAX_REVIEWS = 60
-
-    review_array = []
-
-    review_containers = driver.find_elements(By.TAG_NAME, "table")
-    review_containers_parents =  [review_container.find_element(By.XPATH, "..") for review_container in review_containers]
-    for i in range(min(MAX_REVIEWS, len(review_containers_parents))):
-        review_container_parent = review_containers_parents[i]
-        
-        review = review_container_parent.find_element(By.XPATH, "./*[2]").find_element(By.XPATH, "./*[1]")
-        review_text = review.text
-        review_array.append(review_text)
-
-
-    driver.close()
-    return review_array
+        return review_array
     
 def scrape_descriptions(course_subject, course_num):
     url = f"https://openapi.data.uwaterloo.ca/v3/Courses/1239/{course_subject}/{course_num}"
