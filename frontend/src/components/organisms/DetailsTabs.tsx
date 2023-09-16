@@ -13,11 +13,7 @@ const DetailsTabs = () => {
       case "data":
         return (
           <Tabs.Panel value="data">
-            <Flex
-              direction="column"
-              gap="12px"
-              sx={{ marginTop: "12px", maxHeight: "400px", overflowY: "auto" }}
-            >
+            <Flex direction="column" gap="12px" sx={{ marginTop: "12px" }}>
               {[1, 2].map((i) => (
                 <DataList key={i} />
               ))}
@@ -27,11 +23,7 @@ const DetailsTabs = () => {
       case "steps":
         return (
           <Tabs.Panel value="steps">
-            <Flex
-              direction="column"
-              gap="4px"
-              sx={{ marginTop: "12px", maxHeight: "400px", overflowY: "auto" }}
-            >
+            <Flex direction="column" gap="4px" sx={{ marginTop: "12px" }}>
               {[1, 2, 3, 4].map((i) => (
                 <Checkbox key={i} />
               ))}

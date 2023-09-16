@@ -1,4 +1,5 @@
 import { Drawer, Text } from "@mantine/core";
+import DetailsStatus from "@molecules/DetailsStatus";
 import DetailsTabs from "@organisms/DetailsTabs";
 
 const Details = () => {
@@ -20,6 +21,7 @@ const Details = () => {
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </Text>
 
+      <DetailsStatus />
       <DetailsTabs />
     </Drawer>
   );
