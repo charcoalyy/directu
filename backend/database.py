@@ -40,4 +40,8 @@ def get_all_courses():
     for course in courses:
         if course:
             course_array.append(course)
-    return course_array    
+    return course_array
+
+def update_status(course_code, status):
+    result = course_collection.update({"code" : course_code}, {"$set" : {"status" : status}})
+    return result
