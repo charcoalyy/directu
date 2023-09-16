@@ -9,3 +9,18 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+*::-webkit-scrollbar {
+  width: 6px;
+  background: none;
+  color: none;
+}
+
+*::-webkit-scrollbar-track {
+  background: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #eaeaea;
+  border-radius: 10px;
+}
