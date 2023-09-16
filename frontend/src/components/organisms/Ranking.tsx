@@ -1,33 +1,25 @@
-import { Flex, Text, Group } from "@mantine/core";
-// import PageHeaderTwo from "@molecules/PageHeaderTwo";
+import { rankings } from "@constants/text";
+import { Flex, Text, Grid } from "@mantine/core";
 import Demo from "@organisms/Slider";
 
 const Rank = () => {
   return (
-    <Flex direction="column" gap="20px" sx={{ padding: "40px" }}>
-      {/* <PageHeaderTwo /> */}
-
-      <Group
-        sx={{
-          width: "850px",
-          paddingLeft: "15%",
-          paddingTop: "5%",
-          //   fontWeight: "600",
-        }}
-      >
-        <Group>
-          <Text color="#414141" >Placeholder</Text>
-          <Demo />
-        </Group>
-        <Group>
-          <Text color="#414141" >Placeholder</Text>
-          <Demo />
-        </Group>
-        <Group>
-          <Text color="#414141" >Placeholder</Text>
-          <Demo />
-        </Group>
-      </Group>
+    <Flex
+      direction="column"
+      align="center"
+      gap="10px"
+      sx={{ marginTop: "20px" }}
+    >
+      {rankings.map((r) => (
+        <Grid key="r" align="center" sx={{ width: "100%" }}>
+          <Grid.Col span={3}>
+            <Text>{r}</Text>
+          </Grid.Col>
+          <Grid.Col span={9}>
+            <Demo />
+          </Grid.Col>
+        </Grid>
+      ))}
     </Flex>
   );
 };

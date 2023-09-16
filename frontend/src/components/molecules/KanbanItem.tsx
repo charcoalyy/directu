@@ -24,31 +24,31 @@ const KanbanItem = ({
         padding: "12px",
         backgroundColor: board ? "white" : "lightgrey",
         borderRadius: "7.5px",
-        cursor: disabled ? "default" : "pointer",
+        cursor: "default",
         width: "100%",
         opacity: disabled ? 0.5 : 1,
       }}
     >
       <Group>
         <Flex sx={{ width: "100%" }} justify="space-between" align="center">
-          <Badge size="xs">badge</Badge>
+          <Badge size="xs">{data.score}% MATCH</Badge>
           <ActionIcon
             size="xs"
             radius="lg"
             onClick={() =>
-              !disabled && handleSelect(data.name, board ? "delete" : "add")
+              !disabled && handleSelect(data.code, board ? "delete" : "add")
             }
           >
             {board ? <IconMinus /> : !disabled && <IconPlus />}
           </ActionIcon>
         </Flex>
       </Group>
-      <Group onClick={setOpen}>
+      <Group onClick={setOpen} sx={{ cursor: "pointer" }}>
         <Flex direction="column">
           <Text color="#414141" fz="xs" fw={600}>
             {data.name}
           </Text>
-          <Text color="#414141" sx={{ fontSize: "10px" }}>Duis aute irure dolor</Text>
+          <Text color="#414141" sx={{ fontSize: "10px" }}>{data.name}</Text>
         </Flex>
       </Group>
     </Flex>
