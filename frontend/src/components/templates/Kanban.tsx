@@ -4,7 +4,12 @@ import KanbanBoard from "@organisms/KanbanBoard";
 
 const Kanban = () => {
   return (
-    <Flex direction="column" gap="20px" sx={{ padding: "40px" }}>
+    <Flex
+      direction="column"
+      gap="20px"
+      justify="center"
+      sx={{ padding: "40px", height: "100vh" }}
+    >
       <PageHeader />
       <Grid>
         {[1, 2, 3, 4].map((i) => (
