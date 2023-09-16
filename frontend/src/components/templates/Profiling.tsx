@@ -3,6 +3,7 @@ import useRequest from "@hooks/useRequest";
 import { Box, Button, Flex, Grid, Textarea } from "@mantine/core";
 import Heartable from "@molecules/Heartable";
 import PageHeader from "@molecules/PageHeader";
+import Rank from "@organisms/Ranking";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -70,6 +71,7 @@ const Profiling = () => {
           </Grid>
         );
       case 2:
+        return <Rank />;
       case 3:
       default:
         return (
