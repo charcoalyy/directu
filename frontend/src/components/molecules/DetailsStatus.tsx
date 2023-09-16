@@ -1,6 +1,6 @@
 import { Badge, Flex, Grid, Text } from "@mantine/core";
 
-const DetailsStatus = () => {
+const DetailsStatus = ({ data }: { data: any }) => {
   return (
     <Flex
       direction="column"
@@ -12,26 +12,26 @@ const DetailsStatus = () => {
     >
       <Grid align="center">
         <Grid.Col span={2}>
-          <Text fz="sm" fw={500}>
+          <Text color="#414141" fz="sm" fw={500}>
             Score
           </Text>
         </Grid.Col>
         <Grid.Col span={10}>
-          <Badge>80</Badge>
+          <Badge>{data.score}% MATCH</Badge>
         </Grid.Col>
       </Grid>
 
       <Grid align="center">
         <Grid.Col span={2}>
-          <Text fz="sm" fw={500}>
+          <Text color="#414141" fz="sm" fw={500}>
             Matches
           </Text>
         </Grid.Col>
         <Grid.Col span={10}>
           <Flex gap="4px">
-            <Badge>group work</Badge>
-            <Badge>AI field</Badge>
-            <Badge>no exams</Badge>
+            {data.matches.map((m: any) => (
+              <Badge>{m}</Badge>
+            ))}
           </Flex>
         </Grid.Col>
       </Grid>

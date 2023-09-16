@@ -3,7 +3,7 @@ import { Flex, Text } from "@mantine/core";
 const DataList = () => {
   return (
     <Flex direction="column" gap="4px">
-      <Text fz="md" fw={600}>
+      <Text color="#414141" fz="md" fw={600}>
         Title
       </Text>
 
@@ -13,11 +13,11 @@ const DataList = () => {
           direction="column"
           sx={{
             padding: "14px",
-            backgroundColor: "lightgrey",
+            backgroundColor: "#F1F1F1",
             borderRadius: "5px",
           }}
         >
-          <Text fz="xs">
+          <Text color="#414141" fz="xs">
             Duis aute irure dolor in reprehenderit in voluptate velit esse
             cillum dolore eu fugiat nulla pariatur.
           </Text>

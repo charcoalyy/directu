@@ -25,10 +25,10 @@ const Edit = ({
       title="COURSE LIST"
       overlayProps={{ opacity: 0.5 }}
     >
-      <Text fz="xl" fw={700}>
+      <Text color="#414141"  fz="xl" fw={700}>
         XX
       </Text>
-      <Text fz="xs">
+      <Text color="#414141" fz="xs">
         These are the courses recommended to you for this term.
       </Text>
 

@@ -16,7 +16,7 @@ function Demo() {
       direction="column"
       justify="center"
       gap="20px"
-      sx={{ width: "500px", padding: "40px" }}
+      sx={{ width: "600px", padding: "20px" }}
     >
       <Slider
         label={(val) => MARKS.find((mark) => mark.value === val)?.label}

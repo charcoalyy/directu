@@ -9,9 +9,11 @@ import { useMemo, useState } from "react";
 
 const KanbanBoard = ({
   data,
+  term,
   refreshCourses,
 }: {
   data: any;
+  term: string;
   refreshCourses: () => void;
 }) => {
   const [open, setOpen] = useState<string | null>(null);
@@ -28,9 +30,9 @@ const KanbanBoard = ({
   });
 
   // requests review details for a course
-  const handleOpen = (current: string) => {
+  const handleOpen = async (current: string) => {
     setOpen((prev) => (prev === current ? null : current));
-    makeRequest({ id: "user", course_id: current });
+    await makeRequest({ id: "user", course_id: current });
   };
 
   // updates status of item as added or not added to board
@@ -50,11 +52,13 @@ const KanbanBoard = ({
 
   return (
     <Box>
-      <Details
-        open={!!open}
-        setClose={() => setOpen(null)}
-        data={detailsData}
-      />
+      {detailsData && (
+        <Details
+          open={!!open}
+          setClose={() => setOpen(null)}
+          data={detailsData.course}
+        />
+      )}
       <Edit
         open={edit}
         courses={data}
@@ -64,7 +68,7 @@ const KanbanBoard = ({
       />
       <Flex justify="space-between">
         <Badge radius="sm" size="md">
-          Placeholder
+          Term {term}
         </Badge>
         <ActionIcon size="xs" onClick={() => setEdit(true)}>
           <IconEdit />
@@ -78,10 +82,10 @@ const KanbanBoard = ({
           width: "220px",
           overflowY: "auto",
           marginTop: "4px",
-          border: "1px solid grey",
+          border: "1px #E0E0E0",
           padding: "12px",
           borderRadius: "7.5px",
-          backgroundColor: "lightgrey",
+          backgroundColor: "#F1F1F1",
         }}
       >
         {selected.map((c: any) => (

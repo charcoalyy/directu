@@ -11,10 +11,10 @@ const PageHeader = ({ title, desc, handleAction }: PageHeaderProps) => {
   return (
     <Flex justify="space-between" gap="60px" align="center">
       <Flex direction="column">
-        <Text fz="xl" fw={700}>
+        <Text color="#414141" fz="xl" fw={700}>
           {title}
         </Text>
-        <Text fz="xs">{desc}</Text>
+        <Text color="#414141" fz="xs">{desc}</Text>
       </Flex>
       <ActionIcon onClick={handleAction}>
         <IconReload />

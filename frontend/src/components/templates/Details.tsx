@@ -20,17 +20,13 @@ const Details = ({ open, setClose, data }: DetailsProps) => {
       title="COURSE DETAILS"
       overlayProps={{ opacity: 0.5, blur: 1 }}
     >
-      <Text fz="xl" fw={700}>
-        Title
+      <Text fz="xl" color="#414141" fw={700}>
+        {data.code} {data.name}
       </Text>
-      <Text fz="xs">
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
+      <Text fz="xs" color="#414141">{data.desc}</Text>
 
-      <DetailsStatus />
-      <DetailsTabs />
+      <DetailsStatus data={{ score: data.score, matches: data.matches }} />
+      <DetailsTabs data={{ summary: data.summary, reviews: data.reviews }} />
     </Drawer>
   );
 };
