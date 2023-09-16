@@ -1,14 +1,29 @@
-import { Flex, Tabs } from "@mantine/core";
+import { Flex, Tabs, TabsValue } from "@mantine/core";
 import Checkbox from "@molecules/Checkbox";
+import DataList from "@molecules/DataList";
 import { useMemo, useState } from "react";
 
 const DetailsTabs = () => {
-  const [activeTab, setActiveTab] = useState<"steps" | "data">("steps");
+  const [activeTab, setActiveTab] = useState<"steps" | "data" | TabsValue>(
+    "steps"
+  );
 
   const tabsContent = useMemo(() => {
     switch (activeTab) {
       case "data":
-        return <Tabs.Panel value="data">hi</Tabs.Panel>;
+        return (
+          <Tabs.Panel value="data">
+            <Flex
+              direction="column"
+              gap="12px"
+              sx={{ marginTop: "12px", maxHeight: "400px", overflowY: "auto" }}
+            >
+              {[1, 2].map((i) => (
+                <DataList key={i} />
+              ))}
+            </Flex>
+          </Tabs.Panel>
+        );
       case "steps":
         return (
           <Tabs.Panel value="steps">
