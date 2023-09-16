@@ -2,13 +2,18 @@ import { Drawer, Text } from "@mantine/core";
 import DetailsStatus from "@molecules/DetailsStatus";
 import DetailsTabs from "@organisms/DetailsTabs";
 
-const Details = () => {
+interface DetailsProps {
+  open: boolean;
+  setClose: () => void;
+}
+
+const Details = ({ open, setClose }: DetailsProps) => {
   return (
     <Drawer
       padding="xl"
-      opened={true}
+      opened={open}
       position="right"
-      onClose={close}
+      onClose={setClose}
       title="ITEM DETAILS"
       overlayProps={{ opacity: 0.5, blur: 1 }}
     >

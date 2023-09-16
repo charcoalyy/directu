@@ -1,12 +1,5 @@
-import { Box } from "@mantine/core";
-import Kanban from "@templates/Kanban";
-
 const Home = () => {
-  return (
-    <Box>
-      <Kanban />
-    </Box>
-  );
+  return <></>;
 };
 
 export default Home;

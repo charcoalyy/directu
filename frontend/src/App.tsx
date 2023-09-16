@@ -1,3 +1,4 @@
+import Faculty from "@pages/Faculty";
 import Home from "@pages/Home";
 import NotFound from "@pages/NotFound";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -7,6 +8,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/faculty" element={<Faculty />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

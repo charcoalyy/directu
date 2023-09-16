@@ -1,7 +1,8 @@
+import { Openable } from "@constants/details";
 import { ActionIcon, Badge, Flex, Group, Text } from "@mantine/core";
 import { IconDotsVertical } from "@tabler/icons-react";
 
-const KanbanItem = () => {
+const KanbanItem = ({ setOpen }: Openable) => {
   return (
     <Flex
       direction="column"
@@ -10,7 +11,9 @@ const KanbanItem = () => {
         padding: "16px",
         backgroundColor: "white",
         borderRadius: "7.5px",
+        cursor: "pointer",
       }}
+      onClick={() => setOpen("placeholder")}
     >
       <Group>
         <Flex sx={{ width: "100%" }} justify="space-between" align="center">

@@ -1,7 +1,8 @@
+import { Openable } from "@constants/details";
 import { Badge, Box, Flex } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
 
-const KanbanBoard = () => {
+const KanbanBoard = ({ setOpen }: Openable) => {
   return (
     <Box>
       <Badge radius="sm" size="md">
@@ -20,8 +21,9 @@ const KanbanBoard = () => {
           backgroundColor: "lightgrey",
         }}
       >
-        <KanbanItem />
-        <KanbanItem />
+        {[1, 2, 3, 4].map((i) => (
+          <KanbanItem key={i} setOpen={setOpen} />
+        ))}
       </Flex>
     </Box>
   );
