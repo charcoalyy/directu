@@ -46,14 +46,3 @@ def scrape_descriptions(course_subject, course_num):
     response_json = response.json()
     description = response_json[0]["description"]
     return description
-
-course_subject = "cs"
-course_num = "146"
-course_info = {}
-
-course_info["course"] = f"{course_subject}_{course_num}"
-course_info["description"] = scrape_descriptions(course_subject, course_num)
-course_info["reviews"] = scrape_reviews(course_subject + course_num)
-
-with open(f"{course_subject}_{course_num}_info.json", "w") as f:
-    json.dump(course_info, f)
