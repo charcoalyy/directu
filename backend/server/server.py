@@ -17,7 +17,7 @@ def courses():
     if request.method == 'GET':
         user_id = request.args.get('id')
         if user_id:
-            course_id = request.args.get('course_id')
+            course_id = request.args.get('course_id') # corresponds to course #
             if course_id:
                 # retrieve details for individual course
                 return {"course": {
@@ -28,7 +28,8 @@ def courses():
                     "score": 0,
                     "matches": ["placeholder"],
                     "summary": ["placeholder"],
-                    "reviews": ["placeholder"]
+                    "reviews": ["placeholder"],
+                    "status": "added"
                 }}
             else:
                 # retrieve list of pure course names & term
