@@ -1,4 +1,4 @@
-import Faculty from "@pages/Faculty";
+import Dashboard from "@pages/Dashboard";
 import Home from "@pages/Home";
 import NotFound from "@pages/NotFound";
 import Profiling from "@templates/Profiling";
@@ -9,7 +9,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Faculty />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profiling" element={<Profiling />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
