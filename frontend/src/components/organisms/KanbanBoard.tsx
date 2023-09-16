@@ -1,5 +1,5 @@
 import { Openable } from "@constants/details";
-import { ActionIcon, Badge, Box, Flex, Group } from "@mantine/core";
+import { ActionIcon, Badge, Box, Flex } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
 import { IconEdit } from "@tabler/icons-react";
 import Edit from "@templates/Edit";
