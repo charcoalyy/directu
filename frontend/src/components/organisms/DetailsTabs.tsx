@@ -1,9 +1,8 @@
-import { Flex, Tabs, TabsValue } from "@mantine/core";
+import { Text, Flex, Tabs, TabsValue } from "@mantine/core";
 import Checkbox from "@molecules/Checkbox";
-import DataList from "@molecules/DataList";
 import { useMemo, useState } from "react";
 
-const DetailsTabs = () => {
+const DetailsTabs = ({ data }: { data: any }) => {
   const [activeTab, setActiveTab] = useState<"summary" | "reviews" | TabsValue>(
     "summary"
   );
@@ -14,8 +13,18 @@ const DetailsTabs = () => {
         return (
           <Tabs.Panel value="reviews">
             <Flex direction="column" gap="12px" sx={{ marginTop: "12px" }}>
-              {[1, 2].map((i) => (
-                <DataList key={i} />
+              {data.reviews.map((d: any) => (
+                <Flex
+                  key={d}
+                  direction="column"
+                  sx={{
+                    padding: "14px",
+                    backgroundColor: "lightgrey",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <Text fz="xs">{d}</Text>
+                </Flex>
               ))}
             </Flex>
           </Tabs.Panel>
@@ -24,8 +33,8 @@ const DetailsTabs = () => {
         return (
           <Tabs.Panel value="summary">
             <Flex direction="column" gap="4px" sx={{ marginTop: "12px" }}>
-              {[1, 2, 3, 4].map((i) => (
-                <Checkbox key={i} />
+              {data.summary.map((d: any) => (
+                <Checkbox key={d} data={d} />
               ))}
             </Flex>
           </Tabs.Panel>

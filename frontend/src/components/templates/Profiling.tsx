@@ -1,5 +1,5 @@
 import { createProfile } from "@api/profile";
-import { headers } from "@constants/text";
+import { careers, headers } from "@constants/text";
 import useRequest from "@hooks/useRequest";
 import { Box, Button, Flex, Grid, Textarea } from "@mantine/core";
 import Heartable from "@molecules/Heartable";
@@ -11,20 +11,6 @@ import { useNavigate } from "react-router-dom";
 const Profiling = () => {
   const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState(1);
-  const careers = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-  ];
   const [selected, setSelected] = useState([] as string[]);
   const [text, setText] = useState("");
 
@@ -63,7 +49,7 @@ const Profiling = () => {
             {careers.map((c) => (
               <Grid.Col span={2}>
                 <Heartable
-                  id={c.toString()}
+                  id={c}
                   selected={selected}
                   handleSelect={() => handleSelect(c)}
                 />

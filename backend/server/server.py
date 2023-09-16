@@ -22,7 +22,7 @@ def courses():
                 # retrieve details for individual course
                 return {"course": {
                     "name": "placeholder55",
-                    "code": "placeholder",
+                    "code": "placeholder57",
                     "term": "placeholder",
                     "desc": "placeholder",
                     "score": 0,
@@ -34,16 +34,16 @@ def courses():
             else:
                 # retrieve list of pure course names & term
                 return {"courses": [
-                    {"name": "placeholder1","term": "1", "status": "added"},
-                    {"name": "placeholder2","term": "1", "status": "added"},
-                    {"name": "placeholder3","term": "2", "status": "not added"},
-                    {"name": "placeholder4","term": "2", "status": "added"},
-                    {"name": "placeholder5","term": "3", "status": "added"},
-                    {"name": "placeholder6","term": "3", "status": "not added"},
-                    {"name": "placeholder7","term": "4", "status": "not added"},
-                    {"name": "placeholder8","term": "4", "status": "not added"},
-                    {"name": "placeholder9","term": "5", "status": "added"},
-                    {"name": "placeholder99","term": "5", "status": "not added"}
+                    {"code": "placeholder1", "name": "placeholder1","term": "1", "status": "added", "score": 0},
+                    {"code": "placeholder2","name": "placeholder2","term": "1", "status": "added", "score": 0},
+                    {"code": "placeholder3","name": "placeholder3","term": "2", "status": "not added", "score": 0},
+                    {"code": "placeholder4","name": "placeholder4","term": "2", "status": "added", "score": 0},
+                    {"code": "placeholder5","name": "placeholder5","term": "3", "status": "added", "score": 0},
+                    {"code": "placeholder6","name": "placeholder6","term": "3", "status": "not added", "score": 0},
+                    {"code": "placeholder7","name": "placeholder7","term": "4", "status": "not added", "score": 0},
+                    {"code": "placeholder8","name": "placeholder8","term": "4", "status": "not added", "score": 0},
+                    {"code": "placeholder9","name": "placeholder9","term": "5", "status": "added", "score": 0},
+                    {"code": "placeholder11","name": "placeholder99","term": "5", "status": "not added", "score": 0}
                 ]}
         else:
             return bad_request("Missing user ID")

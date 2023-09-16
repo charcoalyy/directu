@@ -13,6 +13,7 @@ const Heartable = ({
   return (
     <Flex
       direction="column"
+      justify="space-between"
       align="center"
       gap="20px"
       sx={{
@@ -20,6 +21,7 @@ const Heartable = ({
         borderRadius: "5px",
         padding: "12px",
         cursor: "pointer",
+        height: "100px",
       }}
       onClick={handleSelect}
     >
@@ -28,7 +30,9 @@ const Heartable = ({
           {selected.includes(id) ? <IconHeartFilled /> : <IconHeart />}
         </ActionIcon>
       </Flex>
-      <Text fz="sm">Lorem ipsum</Text>
+      <Text fz="xs" sx={{ textAlign: "center" }}>
+        {id}
+      </Text>
     </Flex>
   );
 };

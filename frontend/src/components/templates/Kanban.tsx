@@ -59,6 +59,7 @@ const Kanban = () => {
           Object.entries(parsedData).map(([term, courses]) => (
             <KanbanBoard
               key={term}
+              term={term}
               data={courses}
               refreshCourses={() => makeRequest({ id: "user" })}
             />

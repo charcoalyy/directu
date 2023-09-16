@@ -16,3 +16,34 @@ export const headers = {
     desc: "These courses were selected based on the highest match to your profile. Click course names to view past student reviews and tips. Click edit to add other recommended courses.",
   },
 };
+
+export const rankings = [
+  "Group presentations",
+  "Written tests",
+  "M/C tests",
+  "Reports",
+  "Projects",
+];
+
+export const careers = [
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Data Science",
+  "Computer Vision",
+  "Natural Language Processing",
+  "Cybersecurity",
+  "Blockchain Technology",
+  "Software Engineering",
+  "Cloud Computing",
+  "Database Management",
+  "Computer Graphics",
+  "Robotics",
+  "Human-Computer Interaction",
+  "Bioinformatics",
+  "Quantum Computing",
+  "Network Security",
+  "Web Development",
+  "Mobile App Development",
+  "Game Development",
+  "Big Data Analytics",
+];
