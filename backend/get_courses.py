@@ -18,4 +18,3 @@ course_dict["stat"] = [x["catalogNumber"] for x in list_stat]
 for key in course_dict:
     for course in course_dict[key]:
         add_course_db(key, course)
-        break

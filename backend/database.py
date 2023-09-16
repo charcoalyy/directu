@@ -40,4 +40,4 @@ def get_all_courses():
     for course in courses:
         if course:
             course_array.append(course)
-    return course_array
+    return course_array    
