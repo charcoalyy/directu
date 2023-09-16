@@ -15,4 +15,3 @@ course_dict = {}
 course_dict["cs"] = [x["catalogNumber"] for x in list_cs]
 course_dict["math"] = [x["catalogNumber"] for x in list_math]
 course_dict["stat"] = [x["catalogNumber"] for x in list_stat]
-print(course_dict)
