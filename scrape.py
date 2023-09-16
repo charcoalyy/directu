@@ -43,8 +43,8 @@ def scrape_reviews(course):
     return review_array
     
     
-def scrape_descriptions(course):
-    url = "https://openapi.data.uwaterloo.ca/v3/Courses/1239/cs/136"
+def scrape_descriptions(course_subject, course_num):
+    url = f"https://openapi.data.uwaterloo.ca/v3/Courses/1239/{course_subject}/{course_num}"
     headers = {'x-api-key': 'B4AFD97679334F848DBAFF54C5A44160'}
 
     response = requests.get(url, headers=headers)
@@ -53,12 +53,13 @@ def scrape_descriptions(course):
     return description
 
 
-course = "cs246"
+course_subject = "cs"
+course_num = "146"
 course_info = {}
 
-course_info["cat_num"] = course
-course_info["description"] = scrape_descriptions(course)
-course_info["reviews"] = scrape_reviews(course)
+course_info["course"] = f"{course_subject}_{course_num}"
+course_info["description"] = scrape_descriptions(course_subject, course_num)
+course_info["reviews"] = scrape_reviews(course_subject + course_num)
 
-with open(f"{course}_info.json", "w") as f:
+with open(f"{course_subject}_{course_num}_info.json", "w") as f:
     json.dump(course_info, f)
