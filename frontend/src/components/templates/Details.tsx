@@ -1,5 +1,5 @@
 import { Drawer, Text } from "@mantine/core";
-import Checkbox from "@molecules/Checkbox";
+import DetailsTabs from "@organisms/DetailsTabs";
 
 const Details = () => {
   return (
@@ -20,7 +20,7 @@ const Details = () => {
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </Text>
 
-      <Checkbox />
+      <DetailsTabs />
     </Drawer>
   );
 };
