@@ -1,6 +1,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from scrape import scrape_reviews, scrape_descriptions, get_course_name
+from model_cohere import get_similarity_score_liked
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -59,3 +60,8 @@ def get_similarity_sources(course_code, course_number):
         return sources
     else:
         return None
+    
+def update_similarity_score(course_code, course_number):
+    score = get_similarity_score_liked(get_similarity_sources(course_code, course_number), course_code, course_number)
+    result = course_collection.update_one({"code" : course_code + course_number}, {"$set" : {"score" : score}})
+    return result
