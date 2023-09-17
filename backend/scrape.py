@@ -54,7 +54,7 @@ def get_course_name(course_subject, course_num):
     
     return course_name
 
-def get_course_list():
+def get_course_dict():
     url_cs = "https://openapi.data.uwaterloo.ca/v3/Courses/1239/cs"
     url_math = "https://openapi.data.uwaterloo.ca/v3/Courses/1239/math"
     url_stat = "https://openapi.data.uwaterloo.ca/v3/Courses/1239/stat"
