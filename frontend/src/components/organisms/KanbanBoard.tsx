@@ -45,12 +45,9 @@ const KanbanBoard = ({
     refreshCourses();
   };
 
-  console.log(data);
   const selected = useMemo(() => {
     return data.filter((c: any) => c.status === true);
   }, [data]);
-
-  console.log(selected);
 
   return (
     <Box>
