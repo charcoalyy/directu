@@ -1,12 +1,66 @@
 import { ActionIcon, Flex, Text } from "@mantine/core";
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird
+);
+
 const Heartable = ({
   id,
+  iconName,
   selected,
   handleSelect,
 }: {
   id: string;
+  iconName: any;
   selected: string[];
   handleSelect: () => void;
 }) => {
@@ -17,7 +71,7 @@ const Heartable = ({
       align="center"
       gap="20px"
       sx={{
-        background: "#F1F1F1",
+        background: "#F3F4F8",
         borderRadius: "5px",
         padding: "12px",
         cursor: "pointer",
@@ -27,10 +81,21 @@ const Heartable = ({
     >
       <Flex justify="flex-end" sx={{ width: "100%" }}>
         <ActionIcon size="xs">
-          {selected.includes(id) ? <IconHeartFilled /> : <IconHeart />}
+          {selected.includes(id) ? (
+            <IconHeartFilled style={{ color: "E75480" }} />
+          ) : (
+            <IconHeart />
+          )}
         </ActionIcon>
       </Flex>
-      <Text fz="xs" color="#414141" sx={{ textAlign: "center" }}>
+
+      <FontAwesomeIcon icon={iconName} transform="up-10" />
+
+      <Text
+        fz="xs"
+        color="#414141"
+        sx={{ textAlign: "center", position: "relative", bottom: "20px" }}
+      >
         {id}
       </Text>
     </Flex>

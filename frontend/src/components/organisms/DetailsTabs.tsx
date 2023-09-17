@@ -16,7 +16,7 @@ const DetailsTabs = ({ data }: { data: any }) => {
             <Flex
               direction="column"
               gap="12px"
-              sx={{ marginTop: "12px", backgroundColor: "#F1F1F1" }}
+              sx={{ marginTop: "12px", backgroundColor: "#F3F4F8" }}
             >
               {/* {data.reviews.map((d: any) => (
                 <Flex
@@ -40,7 +40,7 @@ const DetailsTabs = ({ data }: { data: any }) => {
             <Flex
               direction="column"
               gap="4px"
-              sx={{ marginTop: "12px", backgroundColor: "#F1F1F1" }}
+              sx={{ marginTop: "12px", backgroundColor: "#F7F9FE" }}
             >
               {data.summary.map((d: any) => (
                 <Checkbox key={d} data={d} />
@@ -65,7 +65,7 @@ const DetailsTabs = ({ data }: { data: any }) => {
 
   return (
     <Tabs value={activeTab} onTabChange={setActiveTab}>
-      <Tabs.List>
+      <Tabs.List grow>
         <Tabs.Tab color="#414141" value="summary">
           Review Summary
         </Tabs.Tab>

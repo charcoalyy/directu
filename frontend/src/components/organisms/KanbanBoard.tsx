@@ -1,9 +1,10 @@
 import { getCourses, updateCourse } from "@api/courses";
+import { sortByScore } from "@constants/utils";
 import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
 import { ActionIcon, Badge, Box, Flex } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
-import { IconEdit } from "@tabler/icons-react";
+import { IconPlus } from "@tabler/icons-react";
 import Details from "@templates/Details";
 import Edit from "@templates/Edit";
 import { useMemo, useState } from "react";
@@ -75,7 +76,7 @@ const KanbanBoard = ({
           Term {term}
         </Badge>
         <ActionIcon size="xs" onClick={() => setEdit(true)}>
-          <IconEdit />
+          <IconPlus />
         </ActionIcon>
       </Flex>
       <Flex
@@ -89,10 +90,10 @@ const KanbanBoard = ({
           border: "1px #E0E0E0",
           padding: "12px",
           borderRadius: "7.5px",
-          backgroundColor: "#F1F1F1",
+          backgroundColor: "#F3F4F8",
         }}
       >
-        {selected.map((c: any) => (
+        {sortByScore(selected).map((c: any) => (
           <KanbanItem
             key={c.name}
             data={c}
