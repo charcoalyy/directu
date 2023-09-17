@@ -2,6 +2,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import pymongo
 from scrape import scrape_reviews, scrape_descriptions, get_course_name
+from model_cohere import get_personalized_explanation
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -32,7 +33,8 @@ def add_course_db(course_code, course_num):
     return result
 
 def get_one_course(course_code):
-    course = course_collection.find_one({"code": course_code}, {"code" : 1, "name" : 1, "term" : 1, "desc" : 1, "summary" : 1, "review" : 1, "status" : 1, "score" : 1, "_id": 0})
+    update_personal_explanation("CS", course_code)
+    course = course_collection.find_one({"code": course_code}, {"code" : 1, "name" : 1, "term" : 1, "desc" : 1, "summary" : 1, "review" : 1, "status" : 1, "score" : 1, "summary" : 1, "personal_explanation" : 1, "_id": 0})
     return course
 
 def get_all_courses():
@@ -50,7 +52,7 @@ def update_status(course_code, status):
 def update_term(course_code, term):
     result = course_collection.update_one({"code" : course_code}, {"$set" : {"term" : term}})
     return result
-    
+
 def update_similarity_score(dict_score):
     for course_code in dict_score:
         result = course_collection.update_one({"code" : course_code}, {"$set" : {"score" : dict_score[course_code]}})
@@ -59,4 +61,9 @@ def update_similarity_score(dict_score):
     for document in top_15_documents:
         course_collection.update_one({"_id": document["_id"]}, { "$set": {'status' : True} })
     
+    return result
+
+def update_personal_explanation(pref, course_code):
+    explanation = get_personalized_explanation(pref, course_code)
+    result = course_collection.update_one({"code" : course_code}, {"$set" : {"personal_explanation" : explanation}})
     return result
