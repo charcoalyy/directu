@@ -2,6 +2,7 @@ import cohere
 import numpy as np
 from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient
+import time
 load_dotenv()
 
 import os
@@ -85,7 +86,7 @@ def get_personalized_explanation(pref, course_code):
     
     pro = co.chat(
         message, 
-        model="command", 
+        model="command-light-nightly", 
         temperature=0.3
     )
 
@@ -93,7 +94,7 @@ def get_personalized_explanation(pref, course_code):
     
     con = co.chat(
         message, 
-        model="command", 
+        model="command-light-nightly", 
         temperature=0.3
     )
 
