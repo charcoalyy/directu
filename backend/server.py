@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
-from database import get_all_courses, get_one_course, update_status
+from scraper import get_course_dict
+from database import get_all_courses, get_one_course, update_status, update_similarity_score
 
 app=Flask(__name__)
 cors = CORS(app)
@@ -38,7 +38,10 @@ def profile():
     data = request.get_json()
     if data['id']:
         # run through data model with data['body'] --> generate list of courses --> save to database as collection
-        data['body']
+        course_dict = get_course_dict()
+        for subject in course_dict:
+            for course in course_dict[subject]:
+                update_similarity_score(data['liked'], subject, course)
         return {"created": data['id']}
     else:
         return bad_request("Missing user ID")
