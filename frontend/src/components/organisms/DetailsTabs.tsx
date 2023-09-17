@@ -13,25 +13,24 @@ const DetailsTabs = ({ data }: { data: any }) => {
       case "reviews":
         return (
           <Tabs.Panel value="reviews">
-            <Flex
-              direction="column"
-              gap="12px"
-              sx={{ marginTop: "12px", backgroundColor: "#F3F4F8" }}
-            >
-              Currently unavailable
-              {/* {data.reviews.map((d: any) => (
-                <Flex
-                  key={d}
-                  direction="column"
-                  sx={{
-                    padding: "14px",
-                    backgroundColor: "#414141",
-                    borderRadius: "5px",
-                  }}
-                >
-                  <Text fz="xs">{d}</Text>
-                </Flex>
-              ))} */}
+            <Flex direction="column" gap="12px" sx={{ marginTop: "12px" }}>
+              {data.reviews ? (
+                data.reviews.map((d: any) => (
+                  <Flex
+                    key={d}
+                    direction="column"
+                    sx={{
+                      padding: "14px",
+                      backgroundColor: "#F3F4F8",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    <Text fz="xs">{d}</Text>
+                  </Flex>
+                ))
+              ) : (
+                <Text fz="xs">No reviews available for this course</Text>
+              )}
             </Flex>
           </Tabs.Panel>
         );
@@ -43,9 +42,11 @@ const DetailsTabs = ({ data }: { data: any }) => {
               gap="4px"
               sx={{ marginTop: "12px", backgroundColor: "#F7F9FE" }}
             >
-              {data.summary.split("-").map((text: any) => (
-                <Checkbox key={text} data={text} />
-              ))}
+              {data.summary
+                .split("-")
+                .map(
+                  (text: any) => text && <Checkbox key={text} data={text} />
+                )}
             </Flex>
           </Tabs.Panel>
         );
