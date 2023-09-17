@@ -58,6 +58,6 @@ def update_similarity_score(dict_score):
     
     top_10_documents = course_collection.find().sort("score", pymongo.DESCENDING).limit(10)
     for document in top_10_documents:
-        course_collection.update_one({"_id": document["_id"]}, {'status' : True})
+        course_collection.update_one({"_id": document["_id"]}, { "$set": {'status' : True} })
     
     return result

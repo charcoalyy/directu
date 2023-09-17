@@ -76,15 +76,17 @@ def get_all_similarity_sources():
         dict_sources[course['code']] = course_sources
     return dict_sources
 
-def get_review_course_summary():
-    pass
+def get_review_course_summary(course_code):
+    course = course_collection.find_one({"code" : course_code}, {"summary" : 1, "_id" : 0})
+    return course['summary']
 
-def get_personalized_explanation(info):
-    message = "Explain this course's pros and cons targetting the user, the following are user's information\n" + info
+def get_personalized_explanation(pref, course_code):
+    message = "Explain this course's pros and cons targeting this student, the following are student's preferences\n" + pref + "\n" + "The following is summarized course description and review\n" + get_review_course_summary(course_code)
     
     response = co.chat(
         message, 
         model="command", 
         temperature=0.9
     )
+
     return response.txt

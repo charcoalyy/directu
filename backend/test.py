@@ -1,10 +1,35 @@
-from model_cohere import get_similarity_scores, get_liked_similarity_sources, get_all_similarity_sources
-import time
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+import pymongo
+import cohere
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+co = cohere.Client(COHERE_API_KEY)
 
-start = time.time()
-array = ['cs135', 'math235', 'stat230']
-print(get_similarity_scores(get_liked_similarity_sources(array), get_all_similarity_sources()))
-end = time.time()
+mongo_username = os.getenv("MONGO_USER")
+mongo_password = os.getenv("MONGO_PASSWORD")
 
-print(f"time: {end-start:.2f} seconds")
+uri = "mongodb+srv://{0}:{1}@cluster0.2qomck2.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp".format(mongo_username, mongo_password)
+
+client = MongoClient(uri)
+db = client['course_database']
+
+collection_name = "course_collection"
+course_collection = db[collection_name]
+
+def generate_summary(course_code):
+    reviews = course_collection.find_one({"code": course_code}, {"reviews" : 1, "_id": 0})
+    txt = ""
+    for review in reviews:
+        txt += review + "\n"
+    response = co.summarize(
+        text=text,
+        model='command',
+        length='medium',
+        extractiveness='medium'
+    )
+
+    return response.summary
