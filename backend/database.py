@@ -32,8 +32,8 @@ def add_course_db(course_code, course_num):
     result = course_collection.insert_one(course_data)
     return result
 
-def get_one_course(course_code):
-    update_personal_explanation("CS", course_code)
+def get_one_course(pref, course_code):
+    update_personal_explanation(pref, course_code)
     course = course_collection.find_one({"code": course_code}, {"code" : 1, "name" : 1, "term" : 1, "desc" : 1, "summary" : 1, "review" : 1, "status" : 1, "score" : 1, "summary" : 1, "personal_explanation" : 1, "_id": 0})
     return course
 
