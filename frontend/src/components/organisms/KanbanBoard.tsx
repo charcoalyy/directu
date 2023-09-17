@@ -60,14 +60,13 @@ const KanbanBoard = ({
 
   return (
     <Box>
-      {detailsData ? (
+      <Loader />
+      {detailsData && (
         <Details
           open={!!open}
           setClose={() => setOpen(null)}
           data={detailsData.course}
         />
-      ) : (
-        <Loader />
       )}
       <Edit
         open={edit}
