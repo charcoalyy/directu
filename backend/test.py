@@ -1,2 +1,3 @@
-from database import update_similarity_score
-update_similarity_score(['cs135', 'cs136', "math235", "stat240"], "cs", "246")
+from model_cohere import get_embedded_all_similarity_sources, get_similarity_sources
+
+print(get_embedded_all_similarity_sources())
