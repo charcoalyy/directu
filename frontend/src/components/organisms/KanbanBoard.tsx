@@ -1,4 +1,5 @@
 import { getCourses, updateCourse } from "@api/courses";
+import Loader from "@atoms/Loader";
 import { sortByScore } from "@constants/utils";
 import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
@@ -35,7 +36,9 @@ const KanbanBoard = ({
   // requests review details for a course
   const handleOpen = async (current: string) => {
     setOpen((prev) => (prev === current ? null : current));
+    setLoading(true);
     await makeRequest({ id: "user", course_id: current });
+    setLoading(false);
   };
 
   // updates status of item as added or not added to board
@@ -57,12 +60,14 @@ const KanbanBoard = ({
 
   return (
     <Box>
-      {detailsData && (
+      {detailsData ? (
         <Details
           open={!!open}
           setClose={() => setOpen(null)}
           data={detailsData.course}
         />
+      ) : (
+        <Loader />
       )}
       <Edit
         open={edit}

@@ -18,6 +18,7 @@ const DetailsTabs = ({ data }: { data: any }) => {
               gap="12px"
               sx={{ marginTop: "12px", backgroundColor: "#F3F4F8" }}
             >
+              Currently unavailable
               {/* {data.reviews.map((d: any) => (
                 <Flex
                   key={d}
@@ -42,8 +43,8 @@ const DetailsTabs = ({ data }: { data: any }) => {
               gap="4px"
               sx={{ marginTop: "12px", backgroundColor: "#F7F9FE" }}
             >
-              {data.summary.map((d: any) => (
-                <Checkbox key={d} data={d} />
+              {data.summary.split("-").map((text: any) => (
+                <Checkbox key={text} data={text} />
               ))}
             </Flex>
           </Tabs.Panel>
@@ -52,9 +53,8 @@ const DetailsTabs = ({ data }: { data: any }) => {
         return (
           <Tabs.Panel value="breakdown">
             <Flex direction="column" gap="4px" sx={{ marginTop: "12px" }}>
-              {/* {data.analysis.map((d: any) => (
-                <ProCon text={d.text} pro={!!d.pro} />
-              ))} */}
+              <ProCon text={data.personal_explanation[0]} pro={true} />
+              <ProCon text={data.personal_explanation[1]} pro={false} />
             </Flex>
           </Tabs.Panel>
         );
