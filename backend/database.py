@@ -1,6 +1,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from scrape import scrape_reviews, scrape_descriptions, get_course_name
+from model_cohere import get_similarity_score, get_course_summary
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -41,6 +42,10 @@ def get_all_courses():
         if course:
             course_array.append(course)
     return course_array
+
+def update_status(course_code, status):
+    result = course_collection.update({"code" : course_code}, {"$set" : {"status" : status}})
+    return result
 
 def get_similarity_sources(course_code, course_number):
     course = course_collection.find_one({"code": course_code + course_number})
