@@ -1,5 +1,7 @@
 import { createProfile } from "@api/profile";
+import Loader from "@atoms/Loader";
 import { careerCards, headers } from "@constants/text";
+import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
 import { Box, Button, Flex, Grid, Textarea } from "@mantine/core";
 import Heartable from "@molecules/Heartable";
@@ -11,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const Profiling = () => {
   const navigate = useNavigate();
+  const { setLoading } = useLoading();
   const [currentTab, setCurrentTab] = useState(1);
   const [selected, setSelected] = useState([] as string[]);
   const [text, setText] = useState("");
@@ -29,7 +32,7 @@ const Profiling = () => {
     );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const body = "Career interests include "
       .concat(selected.join(", "))
       .concat(". ")
@@ -37,11 +40,13 @@ const Profiling = () => {
 
     const liked = courses;
 
-    makeRequest({
+    setLoading(true);
+    await makeRequest({
       id: "user",
       body: body,
       liked: liked,
     });
+    setLoading(false);
 
     navigate("/dashboard");
   };
@@ -83,6 +88,7 @@ const Profiling = () => {
 
   return (
     <Box>
+      <Loader />
       <Flex
         direction="column"
         gap="10px"
