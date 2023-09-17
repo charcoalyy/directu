@@ -1,4 +1,5 @@
 import { getCourses, updateCourse } from "@api/courses";
+import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
 import { ActionIcon, Badge, Box, Flex } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
@@ -16,6 +17,7 @@ const KanbanBoard = ({
   term: string;
   refreshCourses: () => void;
 }) => {
+  const { setLoading } = useLoading();
   const [open, setOpen] = useState<string | null>(null);
   const [edit, setEdit] = useState(false);
 
@@ -37,20 +39,20 @@ const KanbanBoard = ({
 
   // updates status of item as added or not added to board
   const handleSelect = async (current: string, action: "delete" | "add") => {
+    setLoading(true);
     await makeUpdateRequest({
       id: "user",
       course: current,
       status: action === "add" ? true : false,
     });
+
     refreshCourses();
+    // setLoading(false);
   };
 
-  console.log(data);
   const selected = useMemo(() => {
     return data.filter((c: any) => c.status === true);
   }, [data]);
-
-  console.log(selected);
 
   return (
     <Box>
