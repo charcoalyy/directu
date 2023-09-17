@@ -86,7 +86,8 @@ const Profiling = () => {
       <Flex
         direction="column"
         gap="10px"
-        sx={{ padding: "40px", height: "100vh" }}
+        justify="space-between"
+        sx={{ padding: "0 40px", height: "100%" }}
       >
         <PageHeader
           // @ts-ignore

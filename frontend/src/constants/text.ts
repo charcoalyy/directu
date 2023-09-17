@@ -17,7 +17,7 @@ export const headers = {
   },
   dashboard: {
     title: "Four Years In Brief",
-    desc: "These courses were selected based on the highest match to your profile. Click course names to view past student reviews and tips. Click edit to add other recommended courses.",
+    desc: "These courses were selected based on the highest match to your profile.",
   },
 };
 
