@@ -1,5 +1,7 @@
 import { getCourses } from "@api/courses";
+import Loader from "@atoms/Loader";
 import { headers } from "@constants/text";
+import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
 import { Flex } from "@mantine/core";
 import PageHeader from "@molecules/PageHeader";
@@ -9,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const Kanban = () => {
   const navigate = useNavigate();
+  const { setLoading } = useLoading();
 
   const { data, makeRequest } = useRequest({
     request: getCourses,
@@ -57,7 +60,7 @@ const Kanban = () => {
         gap="10px"
         sx={{ width: "92vw", overflowX: "auto", padding: "8px" }}
       >
-        {parsedData &&
+        {parsedData ? (
           Object.entries(parsedData)
             .sort()
             .map(([term, courses]) => (
@@ -65,9 +68,15 @@ const Kanban = () => {
                 key={term}
                 term={term}
                 data={courses}
-                refreshCourses={() => makeRequest({ id: "user" })}
+                refreshCourses={async () => {
+                  await makeRequest({ id: "user" });
+                  setLoading(false);
+                }}
               />
-            ))}
+            ))
+        ) : (
+          <Loader />
+        )}
       </Flex>
     </Flex>
   );
