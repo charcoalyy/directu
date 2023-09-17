@@ -32,8 +32,8 @@ def generate_summary(course_code):
     
     response = co.summarize(
         text=txt,
-        model='command',
-        length='long',
+        model='command-light-nightly',
+        length='medium',
         extractiveness='medium',
         format='bullets'
     )
