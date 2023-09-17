@@ -1,11 +1,9 @@
-from database import update_term
-from scrape import get_course_list
-from random import randint
+from model_cohere import get_similarity_score_liked
+from database import get_similarity_sources
+import time
 
-terms = ['1A, 1B, 2A, 2B, 3A, 3B, 4A, 4B']
+# print(get_similarity_sources("cs", "135"))
 
-courses = get_course_list()
+similarity_score = get_similarity_score_liked([{"course_subject": "cs", "course_num": "136"}], "cs", "135")
 
-for course in courses:
-    for course_num in courses[course]:
-        update_term(course + course_num, terms[randint(0, len(terms) - 1)])
+print(f"Elapsed time: {END_TIME - START_TIME:.2f} seconds", )
