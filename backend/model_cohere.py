@@ -11,8 +11,6 @@ co = cohere.Client(COHERE_API_KEY)
 mongo_username = os.getenv("MONGO_USER")
 mongo_password = os.getenv("MONGO_PASSWORD")
 
-START_TIME = time.time()
-print("MONGODB START")
 mongo_username = os.getenv("MONGO_USER")
 mongo_password = os.getenv("MONGO_PASSWORD")
 
@@ -27,61 +25,45 @@ course_collection = db[collection_name]
 def cosine_similarity(a, b):
     return np.dot(a, b)/(np.linalg.norm(a) * np.linalg.norm(b))
 
-# takes in arrays
-def get_similarity_score_single(course_1_info, course_2_info):
-    
-    START_TIME = time.time()
-    print("EMBED START")
-    
-    course_1_embeddings = co.embed(texts=course_1_info, model="small").embeddings
-    course_2_embeddings = co.embed(texts=course_2_info, model="small").embeddings
-    
-    count = len(course_1_embeddings) * len(course_2_embeddings)
-    similarity_sum = 0
-    for course_1_embedding_vector in course_1_embeddings:
-        for course_2_embedding_vector in course_2_embeddings:
-            similarity_sum += cosine_similarity(course_1_embedding_vector, course_2_embedding_vector)
-    similarity_score_single_single = similarity_sum / count
-    
-    END_TIME = time.time()
-    print(f"EMBED Time: {END_TIME - START_TIME:.2f} seconds")
-    return similarity_score_single_single
 
-def get_similarity_sources(course_code, course_number):
-    course = course_collection.find_one({"code": course_code + course_number})
-
-    if course:
-        sources = course['reviews']
-        sources.append(course['desc'])
-        sources.append(course['name'])
-        
-        concat = "".join(sources)
-        return concat
-    else:
-        return None
+def get_embeddings(liked_courses_text_dict, all_courses_text_dict):
     
-# course_liked_array is array of dictionaries
-def get_similarity_score_liked(course_liked_array, course_potential_subject, course_potential_num):
-    potential_course_similarity_sum = 0
-    for course_liked in course_liked_array:
-        course_liked_similarity_source = get_similarity_sources(course_liked["course_subject"], course_liked["course_num"])
-        course_potential_similarity_source = get_similarity_sources(course_potential_subject, course_potential_num)
-        
-        concat_course_liked_similarity_source = []
+    liked_courses_text_array = []
+    for course in liked_courses_text_dict:
+        liked_courses_text_array.append(liked_courses_text_dict[course])
+    
+    all_courses_text_array = []
+    for course in all_courses_text_dict:
+        all_courses_text_array.append(all_courses_text_dict[course])
+    
+    
+    liked_courses_embed_array = co.embed(texts=liked_courses_text_array).embeddings
+    all_courses_embed_array = co.embed(texts=all_courses_text_array).embeddings
+    
+    
+    liked_courses_embed_dict = {}
+    all_courses_embed_dict = {}
+    for idx, course in enumerate(liked_courses_text_dict):
+        liked_courses_embed_dict[course] = liked_courses_embed_array[idx]
+    for idx, course in enumerate(all_courses_text_dict):
+        all_courses_embed_dict[course] = all_courses_embed_array[idx]
+    
+    return (liked_courses_embed_dict, all_courses_embed_dict)
 
-        # Iterate through the array, concatenating adjacent pairs
-        #for i in range(0, len(course_liked_similarity_source) - 1, 2):
-        #    concat_course_liked_similarity_source.append("".join([course_liked_similarity_source[i], course_liked_similarity_source[i + 1]]))
-            
-        #concat_course_potential_similarity_source = []
-        #for i in range(0, len(course_potential_similarity_source) - 1, 2):
-        #    concat_course_potential_similarity_source.append("".join([course_potential_similarity_source[i], course_potential_similarity_source[i + 1]]))
-        
-        
-        potential_course_similarity = get_similarity_score_single(course_liked_similarity_source[:10], course_potential_similarity_source[:10])
-        potential_course_similarity_sum += potential_course_similarity
-    potential_course_similarity_score = potential_course_similarity_sum / len(course_liked_array)    
-    return potential_course_similarity_score
+
+
+def get_similarity_scores(liked_courses_text_dict, all_courses_text_dict):
+    (liked_courses_embed_dict, all_courses_embed_dict) = get_embeddings(liked_courses_text_dict, all_courses_text_dict)
+    
+    similarity_scores_dict = {}
+    for all_course in all_courses_embed_dict:
+        # calculate cosine similarity between this liked course and all liked_courses
+        similarity_score_sum = 0
+        for liked_course in liked_courses_embed_dict:
+            similarity_score_sum += cosine_similarity(all_courses_embed_dict[all_course], liked_courses_embed_dict[liked_course])
+        similarity_score = similarity_score_sum / len(liked_courses_embed_dict)
+        similarity_scores_dict[all_course] = similarity_score
+    return similarity_scores_dict
 
 # takes in array of strings
 def parse_liked(liked_array):
