@@ -1,7 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from scrape import scrape_reviews, scrape_descriptions, get_course_name
-from model_cohere import get_similarity_score, get_course_summary
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -11,7 +10,7 @@ mongo_password = os.getenv("MONGO_PASSWORD")
 
 uri = "mongodb+srv://{0}:{1}@cluster0.2qomck2.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp".format(mongo_username, mongo_password)
 
-client = MongoClient(uri)
+client = MongoClient(uri, ssl=False)
 db = client['course_database']
 
 collection_name = "course_collection"
