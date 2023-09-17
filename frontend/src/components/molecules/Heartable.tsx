@@ -17,7 +17,7 @@ const Heartable = ({
       align="center"
       gap="20px"
       sx={{
-        background: "#F1F1F1",
+        background: "#F3F4F8",
         borderRadius: "5px",
         padding: "12px",
         cursor: "pointer",

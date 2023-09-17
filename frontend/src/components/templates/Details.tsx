@@ -27,7 +27,7 @@ const Details = ({ open, setClose, data }: DetailsProps) => {
         {data.desc}
       </Text>
 
-      <Grid align="center" sx={{ marginTop: "8px", marginBottom: "8px" }}>
+      <Grid align="center" sx={{ marginTop: "4px", marginBottom: "8px" }}>
         <Grid.Col span={2}>
           <Text color="#414141" fz="sm" fw={500}>
             Score

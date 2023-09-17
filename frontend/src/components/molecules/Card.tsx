@@ -24,7 +24,7 @@ const Card = () => {
           width: "200px",
           border: "1px solid grey",
           borderRadius: "7.5px",
-          backgroundColor: "#F1F1F1",
+          backgroundColor: "#F3F4F8",
           opacity: opacity,
         }}
       >

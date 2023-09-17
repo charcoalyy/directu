@@ -13,7 +13,7 @@ const DataList = () => {
           direction="column"
           sx={{
             padding: "14px",
-            backgroundColor: "#F1F1F1",
+            backgroundColor: "#F3F4F8",
             borderRadius: "5px",
           }}
         >
