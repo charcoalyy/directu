@@ -3,6 +3,8 @@ from flask_cors import CORS
 from database import get_all_courses, get_one_course, update_status, update_similarity_score
 from model_cohere import get_similarity_scores, get_liked_similarity_sources, get_all_similarity_sources
 
+pref = ''
+
 app=Flask(__name__)
 cors = CORS(app)
 
@@ -18,7 +20,7 @@ def courses():
             course_id = request.args.get('course_id') # corresponds to course #
             if course_id:
                 # retrieve details for individual course
-                return {"course": get_one_course(course_id)}
+                return {"course": get_one_course(pref, course_id)}
             else:
                 # retrieve list of pure course names & term
                 return {"courses": get_all_courses()}
@@ -40,6 +42,7 @@ def profile():
         # run through data model with data['body'] --> generate list of courses --> save to database as collection
         score_dict = get_similarity_scores(get_liked_similarity_sources(data['liked']), get_all_similarity_sources())
         update_similarity_score(score_dict)
+        pref = data['body']
         return {"created": data['id']}
     else:
         return bad_request("Missing user ID")

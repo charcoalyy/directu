@@ -25,11 +25,20 @@ def generate_summary(course_code):
     txt = ""
     for review in reviews:
         txt += review + "\n"
+    txt += course_collection.find_one({"code": course_code}, {"desc" : 1, "_id": 0})["desc"]
+
+    if len(txt) < 250:
+        return txt
+    
     response = co.summarize(
-        text=text,
+        text=txt,
         model='command',
-        length='medium',
+        length='long',
         extractiveness='medium'
     )
 
     return response.summary
+
+for course in course_collection.find():
+    summary = generate_summary(course["code"])
+    course_collection.update_one({"code": course["code"]}, { "$set": {'summary' : summary} })
