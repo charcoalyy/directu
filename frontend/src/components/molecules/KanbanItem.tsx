@@ -22,7 +22,7 @@ const KanbanItem = ({
       gap="8px"
       sx={{
         padding: "12px",
-        backgroundColor: board ? "white" : "lightgrey",
+        backgroundColor: board ? "white" : "#F7F9FE",
         borderRadius: "7.5px",
         cursor: "default",
         width: "100%",
@@ -31,7 +31,7 @@ const KanbanItem = ({
     >
       <Group>
         <Flex sx={{ width: "100%" }} justify="space-between" align="center">
-          <Badge size="xs">{data.score}% MATCH</Badge>
+          <Badge size="xs">{(data.score * 100).toFixed(2)}% MATCH</Badge>
           <ActionIcon
             size="xs"
             radius="lg"
@@ -46,9 +46,11 @@ const KanbanItem = ({
       <Group onClick={setOpen} sx={{ cursor: "pointer" }}>
         <Flex direction="column">
           <Text color="#414141" fz="xs" fw={600}>
+            {data.code.toUpperCase()}
+          </Text>
+          <Text color="#414141" sx={{ fontSize: "10px" }}>
             {data.name}
           </Text>
-          <Text color="#414141" sx={{ fontSize: "10px" }}>{data.name}</Text>
         </Flex>
       </Group>
     </Flex>

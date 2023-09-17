@@ -1,5 +1,4 @@
-import { Drawer, Text } from "@mantine/core";
-import DetailsStatus from "@molecules/DetailsStatus";
+import { Badge, Drawer, Grid, Text } from "@mantine/core";
 import DetailsTabs from "@organisms/DetailsTabs";
 
 interface DetailsProps {
@@ -10,6 +9,7 @@ interface DetailsProps {
 
 const Details = ({ open, setClose, data }: DetailsProps) => {
   // parse data
+  console.log(data);
 
   return (
     <Drawer
@@ -21,11 +21,23 @@ const Details = ({ open, setClose, data }: DetailsProps) => {
       overlayProps={{ opacity: 0.5, blur: 1 }}
     >
       <Text fz="xl" color="#414141" fw={700}>
-        {data.code} {data.name}
+        {data.code.toUpperCase()}: {data.name}
       </Text>
-      <Text fz="xs" color="#414141">{data.desc}</Text>
+      <Text fz="xs" color="#414141">
+        {data.desc}
+      </Text>
 
-      <DetailsStatus data={{ score: data.score, matches: data.matches }} />
+      <Grid align="center" sx={{ marginTop: "4px", marginBottom: "8px" }}>
+        <Grid.Col span={2}>
+          <Text color="#414141" fz="sm" fw={500}>
+            Score
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={10}>
+          <Badge>{(data.score * 100).toFixed(2)}% MATCH</Badge>
+        </Grid.Col>
+      </Grid>
+
       <DetailsTabs data={{ summary: data.summary, reviews: data.reviews }} />
     </Drawer>
   );

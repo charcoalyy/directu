@@ -1,8 +1,9 @@
 import { getCourses, updateCourse } from "@api/courses";
+import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
 import { ActionIcon, Badge, Box, Flex } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
-import { IconEdit } from "@tabler/icons-react";
+import { IconPlus } from "@tabler/icons-react";
 import Details from "@templates/Details";
 import Edit from "@templates/Edit";
 import { useMemo, useState } from "react";
@@ -16,6 +17,7 @@ const KanbanBoard = ({
   term: string;
   refreshCourses: () => void;
 }) => {
+  const { setLoading } = useLoading();
   const [open, setOpen] = useState<string | null>(null);
   const [edit, setEdit] = useState(false);
 
@@ -37,17 +39,19 @@ const KanbanBoard = ({
 
   // updates status of item as added or not added to board
   const handleSelect = async (current: string, action: "delete" | "add") => {
-    console.log("we are trying to ", action);
+    setLoading(true);
     await makeUpdateRequest({
       id: "user",
       course: current,
-      status: action === "add" ? "added" : "not added",
+      status: action === "add" ? true : false,
     });
+
     refreshCourses();
+    // setLoading(false);
   };
 
   const selected = useMemo(() => {
-    return data.filter((c: any) => c.status === "added");
+    return data.filter((c: any) => c.status === true);
   }, [data]);
 
   return (
@@ -71,7 +75,7 @@ const KanbanBoard = ({
           Term {term}
         </Badge>
         <ActionIcon size="xs" onClick={() => setEdit(true)}>
-          <IconEdit />
+          <IconPlus />
         </ActionIcon>
       </Flex>
       <Flex
@@ -85,7 +89,7 @@ const KanbanBoard = ({
           border: "1px #E0E0E0",
           padding: "12px",
           borderRadius: "7.5px",
-          backgroundColor: "#F1F1F1",
+          backgroundColor: "#F3F4F8",
         }}
       >
         {selected.map((c: any) => (
@@ -93,7 +97,7 @@ const KanbanBoard = ({
             key={c.name}
             data={c}
             board={true}
-            setOpen={() => handleOpen(c.name)}
+            setOpen={() => handleOpen(c.code)}
             handleSelect={handleSelect}
           />
         ))}

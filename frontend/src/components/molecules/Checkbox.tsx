@@ -7,7 +7,7 @@ const Checkbox = ({ data }: { data: any }) => {
       align="flex-start"
       sx={{
         padding: "14px",
-        backgroundColor: "#F1F1F1",
+        backgroundColor: "#F3F4F8",
         borderRadius: "7.5px",
       }}
     >
@@ -16,7 +16,9 @@ const Checkbox = ({ data }: { data: any }) => {
         {/* <Text fz="sm" fw={600}>
           Placeholder
         </Text> */}
-        <Text color="#414141" fz="xs">{data}</Text>
+        <Text color="#414141" fz="xs">
+          {data}
+        </Text>
       </Flex>
     </Flex>
   );

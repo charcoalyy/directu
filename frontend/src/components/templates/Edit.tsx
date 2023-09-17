@@ -25,8 +25,8 @@ const Edit = ({
       title="COURSE LIST"
       overlayProps={{ opacity: 0.5 }}
     >
-      <Text color="#414141"  fz="xl" fw={700}>
-        XX
+      <Text color="#414141" fz="xl" fw={700}>
+        Add More
       </Text>
       <Text color="#414141" fz="xs">
         These are the courses recommended to you for this term.
@@ -38,7 +38,7 @@ const Edit = ({
             data={c}
             board={false}
             disabled={selected.includes(c)}
-            key={c.name}
+            key={c.code}
             handleSelect={handleSelect}
           />
         ))}
