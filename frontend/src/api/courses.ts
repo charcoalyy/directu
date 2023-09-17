@@ -14,7 +14,7 @@ export const getCourses = async ({ params }: getCoursesProps) => {
 };
 
 interface updateCourseProps {
-  params: { id: string; course: string; status: string };
+  params: { id: string; course: string; status: boolean };
 }
 
 export const updateCourse = async ({ params }: updateCourseProps) => {

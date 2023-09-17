@@ -37,18 +37,20 @@ const KanbanBoard = ({
 
   // updates status of item as added or not added to board
   const handleSelect = async (current: string, action: "delete" | "add") => {
-    console.log("we are trying to ", action);
     await makeUpdateRequest({
       id: "user",
       course: current,
-      status: action === "add" ? "added" : "not added",
+      status: action === "add" ? true : false,
     });
     refreshCourses();
   };
 
+  console.log(data);
   const selected = useMemo(() => {
-    return data.filter((c: any) => c.status === "added");
+    return data.filter((c: any) => c.status === true);
   }, [data]);
+
+  console.log(selected);
 
   return (
     <Box>

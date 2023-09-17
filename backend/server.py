@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-from database import get_all_courses, get_one_course
+from database import get_all_courses, get_one_course, update_status
 
 app=Flask(__name__)
 cors = CORS(app)
@@ -28,7 +28,8 @@ def courses():
         data = request.get_json()
         if data['id'] and data['course']:
             # update doc corresponding to data['course'] status with added or not added --> return doc updated
-            return {"updated": "39459"}
+            update_status(data['course'], data['status'])
+            return {"updated": "success"}
         else:
             return bad_request("Missing user ID and/or course ID")
         
