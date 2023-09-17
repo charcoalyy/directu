@@ -16,7 +16,6 @@ def get_similarity_score_single(course_1_info, course_2_info):
     course_1_embeddings = co.embed(texts=course_1_info).embeddings
     course_2_embeddings = co.embed(texts=course_2_info).embeddings
     
-    return 0
     count = len(course_1_embeddings) * len(course_2_embeddings)
     similarity_sum = 0
     for course_1_embedding_vector in course_1_embeddings:
