@@ -22,7 +22,7 @@ const KanbanItem = ({
       gap="8px"
       sx={{
         padding: "12px",
-        backgroundColor: board ? "white" : "lightgrey",
+        backgroundColor: board ? "white" : "#F7F9FE",
         borderRadius: "7.5px",
         cursor: "default",
         width: "100%",

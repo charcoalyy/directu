@@ -1,5 +1,5 @@
 import { createProfile } from "@api/profile";
-import { careers, headers } from "@constants/text";
+import { careerCards, headers } from "@constants/text";
 import useRequest from "@hooks/useRequest";
 import { Box, Button, Flex, Grid, Textarea } from "@mantine/core";
 import Heartable from "@molecules/Heartable";
@@ -51,12 +51,13 @@ const Profiling = () => {
       case 1:
         return (
           <Grid>
-            {careers.map((c) => (
-              <Grid.Col span={2} key={c}>
+            {careerCards.map((c) => (
+              <Grid.Col span={2} key={c.id}>
                 <Heartable
-                  id={c}
+                  id={c.id}
+                  iconName={c.icon}
                   selected={selected}
-                  handleSelect={() => handleSelect(c)}
+                  handleSelect={() => handleSelect(c.id)}
                 />
               </Grid.Col>
             ))}
