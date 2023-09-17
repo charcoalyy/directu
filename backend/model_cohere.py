@@ -21,7 +21,6 @@ course_collection = db[collection_name]
 def cosine_similarity(a, b):
     return np.dot(a, b)/(np.linalg.norm(a) * np.linalg.norm(b))
 
-
 def get_embeddings(liked_courses_text_dict, all_courses_text_dict):
     
     liked_courses_text_array = []
@@ -46,8 +45,6 @@ def get_embeddings(liked_courses_text_dict, all_courses_text_dict):
     
     return (liked_courses_embed_dict, all_courses_embed_dict)
 
-
-
 def get_similarity_scores(liked_courses_text_dict, all_courses_text_dict):
     (liked_courses_embed_dict, all_courses_embed_dict) = get_embeddings(liked_courses_text_dict, all_courses_text_dict)
     
@@ -63,24 +60,31 @@ def get_similarity_scores(liked_courses_text_dict, all_courses_text_dict):
 
 def get_similarity_sources(course_code):
     course = course_collection.find_one({"code" : course_code}, {"source" : 1, "_id" : 0})
-    return course
+    return course['source']
 
-def get_embedded_liked_similarity_sources(array_liked):
-    array_sources = []
+def get_liked_similarity_sources(array_liked):
+    dict_sources = {}
     for course_code in array_liked:
         course_sources = get_similarity_sources(course_code)
-        array_sources.append({course_code : course_sources})
-    return array_sources
+        dict_sources[course_code] = course_sources
+    return dict_sources
 
-def get_embedded_all_similarity_sources():
-    array_sources = []
+def get_all_similarity_sources():
+    dict_sources = {}
     for course in course_collection.find():
         course_sources = get_similarity_sources(course['code'])
-        array_sources.append({course['code'] : course_sources})
-    return array_sources
+        dict_sources[course['code']] = course_sources
+    return dict_sources
 
 def get_review_course_summary():
     pass
 
-def get_personalized_explanation():
-    pass
+def get_personalized_explanation(info):
+    message = "Explain this course's pros and cons targetting the user, the following are user's information\n" + info
+    
+    response = co.chat(
+        message, 
+        model="command", 
+        temperature=0.9
+    )
+    return response.txt

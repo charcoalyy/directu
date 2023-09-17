@@ -52,11 +52,11 @@ def update_term(course_code, term):
     result = course_collection.update_one({"code" : course_code}, {"$set" : {"term" : term}})
     return result
     
-def update_similarity_score(array_liked, course_code):
-    score = similarity_scores(array_liked, course_code, course_number)
-    result = course_collection.update_one({"code" : course_code + course_number}, {"$set" : {"score" : score}})
+def update_similarity_score(dict_score):
+    for course_code in dict_score:
+        result = course_collection.update_one({"code" : course_code}, {"$set" : {"score" : dict_score[course_code]}})
     
     top_10_documents = course_collection.find().sort("score", pymongo.DESCENDING).limit(10)
     for document in top_10_documents:
-        course_collection.update_one({"_id": document["_id"]}, update_operation)
+        course_collection.update_one({"_id": document["_id"]}, {'status' : True})
     return result
