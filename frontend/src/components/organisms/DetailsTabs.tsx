@@ -55,7 +55,7 @@ const DetailsTabs = ({ data }: { data: any }) => {
           <Tabs.Panel value="breakdown">
             <Flex direction="column" gap="4px" sx={{ marginTop: "12px" }}>
               {data.personal_explanation.map((item: any, i: number) => {
-                Array.isArray(item) ? (
+                return Array.isArray(item) ? (
                   item.map((t: any) => (
                     <ProCon text={t} pro={i === 0 ? true : false} />
                   ))
