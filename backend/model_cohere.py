@@ -15,8 +15,7 @@ def cosine_similarity(a, b):
 def get_similarity_score_single(course_1_info, course_2_info):
     course_1_embeddings = co.embed(texts=course_1_info).embeddings
     course_2_embeddings = co.embed(texts=course_2_info).embeddings
-    
-    return 0
+
     count = len(course_1_embeddings) * len(course_2_embeddings)
     similarity_sum = 0
     for course_1_embedding_vector in course_1_embeddings:
@@ -33,7 +32,6 @@ def get_similarity_score_liked(course_liked_array, course_potential_subject, cou
     for course_liked in course_liked_array:
         print(course_liked["course_subject"], course_liked["course_num"])
         course_liked_similarity_source = get_similarity_sources(course_liked["course_subject"], course_liked["course_num"])
-        print("here")
         course_potential_similarity_source = get_similarity_sources(course_potential_subject, course_potential_num)
         potential_course_similarity_sum += get_similarity_score_single(course_liked_similarity_source, course_potential_similarity_source)
     potential_course_similarity_score = potential_course_similarity_sum / len(course_liked_array)

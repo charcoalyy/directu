@@ -10,7 +10,7 @@ mongo_password = os.getenv("MONGO_PASSWORD")
 
 uri = "mongodb+srv://{0}:{1}@cluster0.2qomck2.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp".format(mongo_username, mongo_password)
 
-client = MongoClient(uri, ssl=False)
+client = MongoClient(uri)
 db = client['course_database']
 
 collection_name = "course_collection"
