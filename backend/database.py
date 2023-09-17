@@ -1,5 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+import pymongo
 from scrape import scrape_reviews, scrape_descriptions, get_course_name
 from model_cohere import feed_liked_courses_here
 from dotenv import load_dotenv
@@ -32,7 +33,7 @@ def add_course_db(course_code, course_num):
     return result
 
 def get_one_course(course_code):
-    course = course_collection.find_one({"code": course_code})
+    course = course_collection.find_one({"code": course_code}, {"code" : 1, "name" : 1, "term" : 1, "desc" : 1, "summary" : 1, "review" : 1, "status" : 1, "score" : 1, "_id": 0})
     return course
 
 def get_all_courses():
@@ -54,4 +55,7 @@ def update_term(course_code, term):
 def update_similarity_score(array_liked, course_code, course_number):
     score = feed_liked_courses_here(array_liked, course_code, course_number)
     result = course_collection.update_one({"code" : course_code + course_number}, {"$set" : {"score" : score}})
+    top_10_documents = course_collection.find().sort("score", pymongo.DESCENDING).limit(10)
+    for document in top_10_documents:
+        course_collection.update_one({"_id": document["_id"]}, update_operation)
     return result

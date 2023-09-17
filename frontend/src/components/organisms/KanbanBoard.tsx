@@ -97,7 +97,7 @@ const KanbanBoard = ({
             key={c.name}
             data={c}
             board={true}
-            setOpen={() => handleOpen(c.name)}
+            setOpen={() => handleOpen(c.code)}
             handleSelect={handleSelect}
           />
         ))}

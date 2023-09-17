@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from scraper import get_course_dict
+from scrape import get_course_dict
 from database import get_all_courses, get_one_course, update_status, update_similarity_score
 
 app=Flask(__name__)
