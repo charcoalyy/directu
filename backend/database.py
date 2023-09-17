@@ -55,8 +55,8 @@ def get_similarity_sources(course_code, course_number):
     course = course_collection.find_one({"code": course_code + course_number})
     if course:
         sources = course['reviews']
-        sources.insert(0, course['desc'])
-        sources.insert(0, course['name'])
+        sources.append(course['desc'])
+        sources.append(course['name'])
         return sources
     else:
         return None

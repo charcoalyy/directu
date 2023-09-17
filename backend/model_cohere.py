@@ -13,8 +13,8 @@ def cosine_similarity(a, b):
 
 # takes in arrays
 def get_similarity_score_single(course_1_info, course_2_info):
-    course_1_embeddings = co.embed(texts=course_1_info).embeddings
-    course_2_embeddings = co.embed(texts=course_2_info).embeddings
+    course_1_embeddings = co.embed(texts=course_1_info, model="small").embeddings
+    course_2_embeddings = co.embed(texts=course_2_info, model="small").embeddings
     
     count = len(course_1_embeddings) * len(course_2_embeddings)
     similarity_sum = 0
@@ -32,7 +32,7 @@ def get_similarity_score_liked(course_liked_array, course_potential_subject, cou
     for course_liked in course_liked_array:
         course_liked_similarity_source = get_similarity_sources(course_liked["course_subject"], course_liked["course_num"])
         course_potential_similarity_source = get_similarity_sources(course_potential_subject, course_potential_num)
-        potential_course_similarity = get_similarity_score_single(course_liked_similarity_source, course_potential_similarity_source)
+        potential_course_similarity = get_similarity_score_single(course_liked_similarity_source[:30], course_potential_similarity_source[:30])
         potential_course_similarity_sum += potential_course_similarity
         print("Similarity score:", course_liked["course_subject"], course_liked["course_num"], "and", course_potential_subject, course_potential_num, "->", potential_course_similarity)
     potential_course_similarity_score = potential_course_similarity_sum / len(course_liked_array)
