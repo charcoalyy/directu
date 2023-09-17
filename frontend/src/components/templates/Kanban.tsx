@@ -1,5 +1,7 @@
 import { getCourses } from "@api/courses";
+import Loader from "@atoms/Loader";
 import { headers } from "@constants/text";
+import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
 import { Flex } from "@mantine/core";
 import PageHeader from "@molecules/PageHeader";
@@ -9,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const Kanban = () => {
   const navigate = useNavigate();
+  const { setLoading } = useLoading();
 
   const { data, makeRequest } = useRequest({
     request: getCourses,
@@ -29,18 +32,15 @@ const Kanban = () => {
             status: string;
           }
         ) => {
-          // if (!Object.keys(dict).includes(course.term)) {
-          //   dict[course.term] = [course];
-          // } else {
-          //   dict[course.term].push(course);
-          // }
-          // console.log(dict);
-          // TODO: hardcode in terms
-
-          dict.temporary.push(course);
+          if (course.term) {
+            if (!Object.keys(dict).includes(course.term)) {
+              dict[course.term] = [];
+            }
+            dict[course.term].push(course);
+          }
           return dict;
         },
-        { temporary: [] }
+        {}
       )
     );
   }, [data]);
@@ -60,15 +60,23 @@ const Kanban = () => {
         gap="10px"
         sx={{ width: "92vw", overflowX: "auto", padding: "8px" }}
       >
-        {parsedData &&
-          Object.entries(parsedData).map(([term, courses]) => (
-            <KanbanBoard
-              key={term}
-              term={term}
-              data={courses}
-              refreshCourses={() => makeRequest({ id: "user" })}
-            />
-          ))}
+        {parsedData ? (
+          Object.entries(parsedData)
+            .sort()
+            .map(([term, courses]) => (
+              <KanbanBoard
+                key={term}
+                term={term}
+                data={courses}
+                refreshCourses={async () => {
+                  await makeRequest({ id: "user" });
+                  setLoading(false);
+                }}
+              />
+            ))
+        ) : (
+          <Loader />
+        )}
       </Flex>
     </Flex>
   );
