@@ -1,4 +1,4 @@
-import { ActionIcon, Flex, Text } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 import { IconMoodHappyFilled, IconMoodSadFilled } from "@tabler/icons-react";
 
 const ProCon = ({ text, pro }: { text: string; pro: boolean }) => {

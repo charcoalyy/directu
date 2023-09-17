@@ -1,5 +1,4 @@
 import { Badge, Drawer, Grid, Text } from "@mantine/core";
-import DetailsStatus from "@molecules/DetailsStatus";
 import DetailsTabs from "@organisms/DetailsTabs";
 
 interface DetailsProps {

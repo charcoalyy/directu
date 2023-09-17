@@ -6,5 +6,6 @@ export const theme: MantineThemeOverride = {
   colors: {
     red: ["#ff0000", "#b31212", "#ff5757"],
   },
+  primaryColor: "indigo",
   fontFamily: "Inter, system-ui, Helvetica, Arial, sans-serif",
 };
