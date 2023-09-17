@@ -89,4 +89,4 @@ def get_personalized_explanation(pref, course_code):
         temperature=0.3
     )
 
-    return response.txt
+    return response.text
