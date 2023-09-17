@@ -40,7 +40,7 @@ def get_similarity_score_liked(course_liked_array, course_potential_subject, cou
     
     return potential_course_similarity_score
 
-            
+
     
 
 
