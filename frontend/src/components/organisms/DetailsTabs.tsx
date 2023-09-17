@@ -18,6 +18,7 @@ const DetailsTabs = ({ data }: { data: any }) => {
               gap="12px"
               sx={{ marginTop: "12px", backgroundColor: "#F3F4F8" }}
             >
+              Currently unavailable
               {/* {data.reviews.map((d: any) => (
                 <Flex
                   key={d}
