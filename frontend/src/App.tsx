@@ -3,6 +3,7 @@ import Home from "@pages/Home";
 import NotFound from "@pages/NotFound";
 import Profile from "@pages/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import '@molecules/fontawesome';
 
 const App = () => {
   return (
