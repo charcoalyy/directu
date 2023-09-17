@@ -31,7 +31,14 @@ const KanbanItem = ({
     >
       <Group>
         <Flex sx={{ width: "100%" }} justify="space-between" align="center">
-          <Badge size="xs">{(data.score * 100).toFixed(2)}% MATCH</Badge>
+          <Badge
+            size="xs"
+            color={
+              data.score > 0.5 ? "teal" : data.score > 0.25 ? "yellow" : "pink"
+            }
+          >
+            {(data.score * 100).toFixed(2)}% MATCH
+          </Badge>
           <ActionIcon
             size="xs"
             radius="lg"
