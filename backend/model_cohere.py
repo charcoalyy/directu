@@ -81,12 +81,20 @@ def get_review_course_summary(course_code):
     return course['summary']
 
 def get_personalized_explanation(pref, course_code):
-    message = "Explain this course's pros and cons targeting this student, the following are student's preferences\n" + pref + "\n" + "The following is summarized course description and review\n" + get_review_course_summary(course_code)
+    message = "Address the student in second person and explain this course's pros targeting this student, the following are student's preferences\n" + pref + "\n" + "The following is summarized course description and review\n" + get_review_course_summary(course_code)
     
-    response = co.chat(
+    pro = co.chat(
         message, 
         model="command", 
         temperature=0.3
     )
 
-    return response.text
+    message = "Address the student in second person and explain this course's cons targeting this student, the following are student's preferences\n" + pref + "\n" + "The following is summarized course description and review\n" + get_review_course_summary(course_code)
+    
+    con = co.chat(
+        message, 
+        model="command", 
+        temperature=0.3
+    )
+
+    return [pro.text, con.text]

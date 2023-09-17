@@ -34,7 +34,8 @@ def generate_summary(course_code):
         text=txt,
         model='command',
         length='long',
-        extractiveness='medium'
+        extractiveness='medium',
+        format='bullets'
     )
 
     return response.summary
