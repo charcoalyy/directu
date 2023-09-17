@@ -2,7 +2,7 @@ import { post } from "./fetchRequests";
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 interface createProfileProps {
-  params: { id: string; body: string };
+  params: { id: string; body: string; liked: string[] };
 }
 
 export const createProfile = async ({ params }: createProfileProps) => {

@@ -11,6 +11,10 @@ export const headers = {
     title: "The Raw Details",
     desc: "Describe what you want out of your courses. Is there a teaching style you hate or love, a skill you desperately want to learn, any particular weaknesses or strengths, or anything else you find important?",
   },
+  profiling4: {
+    title: "Your Favourites",
+    desc: "Let us know what courses stuck with you the most.",
+  },
   dashboard: {
     title: "Four Years In Brief",
     desc: "These courses were selected based on the highest match to your profile. Click course names to view past student reviews and tips. Click edit to add other recommended courses.",

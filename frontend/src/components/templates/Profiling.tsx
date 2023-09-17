@@ -4,6 +4,7 @@ import useRequest from "@hooks/useRequest";
 import { Box, Button, Flex, Grid, Textarea } from "@mantine/core";
 import Heartable from "@molecules/Heartable";
 import PageHeader from "@molecules/PageHeader";
+import Multiselect from "@organisms/Multiselect";
 import Rank from "@organisms/Ranking";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,7 @@ const Profiling = () => {
   const [currentTab, setCurrentTab] = useState(1);
   const [selected, setSelected] = useState([] as string[]);
   const [text, setText] = useState("");
+  const [courses, setCourses] = useState([] as string[]);
 
   const { makeRequest } = useRequest({
     request: createProfile,
@@ -33,9 +35,12 @@ const Profiling = () => {
       .concat(". ")
       .concat(text);
 
+    const liked = courses;
+
     makeRequest({
       id: "user",
       body: body,
+      liked: liked,
     });
 
     navigate("/dashboard");
@@ -47,7 +52,7 @@ const Profiling = () => {
         return (
           <Grid>
             {careers.map((c) => (
-              <Grid.Col span={2}>
+              <Grid.Col span={2} key={c}>
                 <Heartable
                   id={c}
                   selected={selected}
@@ -60,7 +65,6 @@ const Profiling = () => {
       case 2:
         return <Rank />;
       case 3:
-      default:
         return (
           <Textarea
             placeholder="Give us all the details"
@@ -69,8 +73,13 @@ const Profiling = () => {
             onChange={(e) => setText(e.currentTarget.value)}
           />
         );
+      case 4:
+        return <Multiselect updateHomeValue={setCourses} />;
+      default:
+        return;
     }
   }, [currentTab, selected, text]);
+
   return (
     <Box>
       <Flex
@@ -93,12 +102,12 @@ const Profiling = () => {
             radius="xl"
             size="xs"
             onClick={() => {
-              currentTab === 3
+              currentTab === 4
                 ? handleSubmit()
-                : setCurrentTab((prev) => (prev !== 3 ? prev + 1 : prev));
+                : setCurrentTab((prev) => (prev !== 4 ? prev + 1 : prev));
             }}
           >
-            {currentTab === 3 ? "DONE" : "NEXT"}
+            {currentTab === 4 ? "DONE" : "NEXT"}
           </Button>
         </Flex>
       </Flex>
