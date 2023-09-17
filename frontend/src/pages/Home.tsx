@@ -15,9 +15,9 @@ const Home = () => {
         DirectU
       </Text>
       <Text fz="sm" sx={{ textAlign: "center", width: "50%" }}>
-        With the collective effort of thousands of real students' feedback and
-        experiences, the best courses for you—and specifically you—are laid out
-        right in front of you.
+        Building on thousands of real students' feedback and experiences, the
+        best courses for you—and specifically you—are listed right here, right
+        now.
       </Text>
       <Text fz="sm" sx={{ textAlign: "center", width: "50%" }}>
         Want to take the program courses that'll actually provide something of
