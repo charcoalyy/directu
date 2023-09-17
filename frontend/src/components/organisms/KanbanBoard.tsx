@@ -83,7 +83,7 @@ const KanbanBoard = ({
         direction="column"
         gap="8px"
         sx={{
-          height: "400px",
+          height: "450px",
           width: "220px",
           overflowY: "auto",
           marginTop: "4px",

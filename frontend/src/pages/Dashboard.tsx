@@ -1,13 +1,13 @@
-import Loader from "@atoms/Loader";
-import { Box } from "@mantine/core";
+import { Box, Flex } from "@mantine/core";
+import Nav from "@molecules/Nav";
 import Kanban from "@templates/Kanban";
 
 const Dashboard = () => {
   return (
-    <Box>
-      <Loader />
+    <Flex direction="column" justify="flex-start">
+      <Nav />
       <Kanban />
-    </Box>
+    </Flex>
   );
 };
 
