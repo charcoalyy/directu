@@ -1,4 +1,5 @@
 import { getCourses, updateCourse } from "@api/courses";
+import { sortByScore } from "@constants/utils";
 import useLoading from "@context/loadingContext";
 import useRequest from "@hooks/useRequest";
 import { ActionIcon, Badge, Box, Flex } from "@mantine/core";
@@ -92,7 +93,7 @@ const KanbanBoard = ({
           backgroundColor: "#F3F4F8",
         }}
       >
-        {selected.map((c: any) => (
+        {sortByScore(selected).map((c: any) => (
           <KanbanItem
             key={c.name}
             data={c}
