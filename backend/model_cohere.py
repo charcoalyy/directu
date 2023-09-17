@@ -86,7 +86,7 @@ def get_personalized_explanation(pref, course_code):
     response = co.chat(
         message, 
         model="command", 
-        temperature=0.9
+        temperature=0.3
     )
 
     return response.txt
