@@ -2,7 +2,6 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import pymongo
 from scrape import scrape_reviews, scrape_descriptions, get_course_name
-from model_cohere import similarity_scores
 from dotenv import load_dotenv
 load_dotenv()
 import os
