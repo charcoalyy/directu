@@ -9,12 +9,14 @@ interface PageHeaderProps {
 
 const PageHeader = ({ title, desc, handleAction }: PageHeaderProps) => {
   return (
-    <Flex justify="space-between" gap="60px" align="center">
+    <Flex justify="space-between" gap="80px" align="center">
       <Flex direction="column">
         <Text color="#414141" fz="xl" fw={700}>
           {title}
         </Text>
-        <Text color="#414141" fz="xs">{desc}</Text>
+        <Text color="#414141" fz="sm">
+          {desc}
+        </Text>
       </Flex>
       <ActionIcon onClick={handleAction}>
         <IconReload />

@@ -18,7 +18,7 @@ const ProCon = ({ text, pro }: { text: string; pro: boolean }) => {
         <IconMoodSadFilled style={{ color: "#EB9B9B" }} />
       )}
 
-      <Text fz="sm">{text}</Text>
+      <Text fz="xs">{text}</Text>
     </Flex>
   );
 };

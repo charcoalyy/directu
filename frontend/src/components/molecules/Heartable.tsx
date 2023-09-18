@@ -150,14 +150,14 @@ const Heartable = ({
       <Flex justify="flex-end" sx={{ width: "100%" }}>
         <ActionIcon size="xs">
           {selected.includes(id) ? (
-            <IconHeartFilled style={{ color: "E75480" }} />
+            <IconHeartFilled style={{ color: "#4263EB" }} />
           ) : (
             <IconHeart />
           )}
         </ActionIcon>
       </Flex>
 
-      <FontAwesomeIcon icon={iconName} transform="up-10" />
+      <FontAwesomeIcon icon={iconName} transform="up-10" color="#343A40" />
 
       <Text
         fz="xs"

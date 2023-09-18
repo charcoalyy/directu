@@ -38,7 +38,13 @@ const Details = ({ open, setClose, data }: DetailsProps) => {
         </Grid.Col>
       </Grid>
 
-      <DetailsTabs data={{ summary: data.summary, reviews: data.reviews }} />
+      <DetailsTabs
+        data={{
+          summary: data.summary,
+          reviews: data.reviews,
+          personal_explanation: data.personal_explanation,
+        }}
+      />
     </Drawer>
   );
 };

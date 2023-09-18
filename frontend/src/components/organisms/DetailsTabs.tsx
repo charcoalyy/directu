@@ -13,24 +13,24 @@ const DetailsTabs = ({ data }: { data: any }) => {
       case "reviews":
         return (
           <Tabs.Panel value="reviews">
-            <Flex
-              direction="column"
-              gap="12px"
-              sx={{ marginTop: "12px", backgroundColor: "#F3F4F8" }}
-            >
-              {/* {data.reviews.map((d: any) => (
-                <Flex
-                  key={d}
-                  direction="column"
-                  sx={{
-                    padding: "14px",
-                    backgroundColor: "#414141",
-                    borderRadius: "5px",
-                  }}
-                >
-                  <Text fz="xs">{d}</Text>
-                </Flex>
-              ))} */}
+            <Flex direction="column" gap="12px" sx={{ marginTop: "12px" }}>
+              {data.reviews ? (
+                data.reviews.map((d: any) => (
+                  <Flex
+                    key={d}
+                    direction="column"
+                    sx={{
+                      padding: "14px",
+                      backgroundColor: "#F3F4F8",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    <Text fz="xs">{d}</Text>
+                  </Flex>
+                ))
+              ) : (
+                <Text fz="xs">No reviews available for this course</Text>
+              )}
             </Flex>
           </Tabs.Panel>
         );
@@ -42,9 +42,11 @@ const DetailsTabs = ({ data }: { data: any }) => {
               gap="4px"
               sx={{ marginTop: "12px", backgroundColor: "#F7F9FE" }}
             >
-              {data.summary.map((d: any) => (
-                <Checkbox key={d} data={d} />
-              ))}
+              {data.summary
+                .split("-")
+                .map(
+                  (text: any) => text && <Checkbox key={text} data={text} />
+                )}
             </Flex>
           </Tabs.Panel>
         );
@@ -52,9 +54,15 @@ const DetailsTabs = ({ data }: { data: any }) => {
         return (
           <Tabs.Panel value="breakdown">
             <Flex direction="column" gap="4px" sx={{ marginTop: "12px" }}>
-              {/* {data.analysis.map((d: any) => (
-                <ProCon text={d.text} pro={!!d.pro} />
-              ))} */}
+              {data.personal_explanation.map((item: any, i: number) => {
+                return Array.isArray(item) ? (
+                  item.map((t: any) => (
+                    <ProCon text={t} pro={i === 0 ? true : false} />
+                  ))
+                ) : (
+                  <ProCon text={item} pro={i === 0 ? true : false} />
+                );
+              })}
             </Flex>
           </Tabs.Panel>
         );

@@ -2,7 +2,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import pymongo
 from scrape import scrape_reviews, scrape_descriptions, get_course_name
-from model_cohere import feed_liked_courses_here
+from model_cohere import get_personalized_explanation
 from dotenv import load_dotenv
 load_dotenv()
 import os
@@ -32,8 +32,9 @@ def add_course_db(course_code, course_num):
     result = course_collection.insert_one(course_data)
     return result
 
-def get_one_course(course_code):
-    course = course_collection.find_one({"code": course_code}, {"code" : 1, "name" : 1, "term" : 1, "desc" : 1, "summary" : 1, "review" : 1, "status" : 1, "score" : 1, "_id": 0})
+def get_one_course(pref, course_code):
+    update_personal_explanation(pref, course_code)
+    course = course_collection.find_one({"code": course_code}, {"code" : 1, "name" : 1, "term" : 1, "desc" : 1, "summary" : 1, "reviews" : 1, "status" : 1, "score" : 1, "summary" : 1, "personal_explanation" : 1, "_id": 0})
     return course
 
 def get_all_courses():
@@ -51,11 +52,18 @@ def update_status(course_code, status):
 def update_term(course_code, term):
     result = course_collection.update_one({"code" : course_code}, {"$set" : {"term" : term}})
     return result
+
+def update_similarity_score(dict_score):
+    for course_code in dict_score:
+        result = course_collection.update_one({"code" : course_code}, {"$set" : {"score" : dict_score[course_code]}})
     
-def update_similarity_score(array_liked, course_code, course_number):
-    score = feed_liked_courses_here(array_liked, course_code, course_number)
-    result = course_collection.update_one({"code" : course_code + course_number}, {"$set" : {"score" : score}})
-    top_10_documents = course_collection.find().sort("score", pymongo.DESCENDING).limit(10)
-    for document in top_10_documents:
-        course_collection.update_one({"_id": document["_id"]}, update_operation)
+    top_15_documents = course_collection.find().sort("score", pymongo.DESCENDING).limit(15)
+    for document in top_15_documents:
+        course_collection.update_one({"_id": document["_id"]}, { "$set": {'status' : True} })
+    
+    return result
+
+def update_personal_explanation(pref, course_code):
+    explanation = get_personalized_explanation(pref, course_code)
+    result = course_collection.update_one({"code" : course_code}, {"$set" : {"personal_explanation" : explanation}})
     return result
