@@ -53,32 +53,35 @@ export const careers = [
 ];
 
 export const icons = [
-  'table', 
-  'store', 
-  'suitcase', 
-  'spa', 
-  'search', 
-  'robot',
-  'plug',
-  'phone',
-  'paste',
-  'pager',
-  'otter',
-  'mountain',
-  'mobile',
-  'laptop',
-  'leaf',
-  'image',
-  'folder',
-  'crow',
-  'frog',
-  'kiwi-bird'
+  "table",
+  "store",
+  "suitcase",
+  "spa",
+  "search",
+  "robot",
+  "plug",
+  "phone",
+  "paste",
+  "pager",
+  "otter",
+  "mountain",
+  "mobile",
+  "laptop",
+  "leaf",
+  "image",
+  "folder",
+  "crow",
+  "frog",
+  "kiwi-bird",
 ];
 
-export const careerCards = careers.reduce((arr: {[key: string]: string}[], career: string, i: number) => {
-  arr.push({
-    name: career,
-    icon: icons[i] as string
-  })
-  return arr
-  }, []);
+export const careerCards = careers.reduce(
+  (arr: { [key: string]: string }[], career: string, i: number) => {
+    arr.push({
+      id: career,
+      icon: icons[i] as string,
+    });
+    return arr;
+  },
+  []
+);

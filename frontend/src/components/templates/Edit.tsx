@@ -1,3 +1,4 @@
+import { sortByScore } from "@constants/utils";
 import { Drawer, Flex, Text } from "@mantine/core";
 import KanbanItem from "@molecules/KanbanItem";
 
@@ -33,7 +34,7 @@ const Edit = ({
       </Text>
 
       <Flex direction="column" gap="8px" sx={{ marginTop: "16px" }}>
-        {courses.map((c) => (
+        {sortByScore(courses).map((c) => (
           <KanbanItem
             data={c}
             board={false}

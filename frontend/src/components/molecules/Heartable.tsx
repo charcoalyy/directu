@@ -1,6 +1,110 @@
 import { ActionIcon, Flex, Text } from "@mantine/core";
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird
+);
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird
+);
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -45,14 +149,21 @@ const Heartable = ({
     >
       <Flex justify="flex-end" sx={{ width: "100%" }}>
         <ActionIcon size="xs">
-          {selected.includes(id) ? <IconHeartFilled style={{color:"E75480"}}/> : <IconHeart />}
+          {selected.includes(id) ? (
+            <IconHeartFilled style={{ color: "E75480" }} />
+          ) : (
+            <IconHeart />
+          )}
         </ActionIcon>
       </Flex>
-      {/*<FontAwesomeIcon fontSize="10px" icon={iconName} transform= "up-7" /> */}
+
       <FontAwesomeIcon icon={iconName} transform="up-10" />
 
-
-      <Text fz="xs" color="#414141" sx={{ textAlign: "center", position:"relative",bottom:"20px", }}>
+      <Text
+        fz="xs"
+        color="#414141"
+        sx={{ textAlign: "center", position: "relative", bottom: "20px" }}
+      >
         {id}
       </Text>
     </Flex>

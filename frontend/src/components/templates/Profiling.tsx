@@ -51,13 +51,13 @@ const Profiling = () => {
       case 1:
         return (
           <Grid>
-            {careers.map((c) => (
-              <Grid.Col span={2} key={c}>
+            {careerCards.map((c) => (
+              <Grid.Col span={2} key={c.id}>
                 <Heartable
-                  id={c.name}
+                  id={c.id}
                   iconName={c.icon}
                   selected={selected}
-                  handleSelect={() => handleSelect(c.name)}
+                  handleSelect={() => handleSelect(c.id)}
                 />
               </Grid.Col>
             ))}
