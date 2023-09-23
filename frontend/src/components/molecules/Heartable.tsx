@@ -53,6 +53,69 @@ library.add(
   faKiwiBird
 );
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+  faCheckSquare,
+  faCoffee,
+  faTable,
+  faStore,
+  faSuitcase,
+  faSpa,
+  faSearch,
+  faRobot,
+  faPlug,
+  faPhone,
+  faPaste,
+  faPager,
+  faOtter,
+  faMountain,
+  faMobile,
+  faLaptop,
+  faLeaf,
+  faImage,
+  faFolder,
+  faCrow,
+  faFrog,
+  faKiwiBird
+);
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee, faTable, faStore,faSuitcase, faSpa, faSearch, faRobot,
+faPlug, faPhone, faPaste, faPager, faOtter, faMountain, faMobile, faLaptop, faLeaf,
+faImage, faFolder, faCrow,faFrog, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
+      
+library.add(fab,  faCheckSquare, faCoffee, faTable, faStore,faSuitcase, faSpa, faSearch, faRobot,
+  faPlug, faPhone, faPaste, faPager, faOtter, faMountain, faMobile, faLaptop, faLeaf,
+  faImage, faFolder,faCrow, faFrog, faKiwiBird)
+
 const Heartable = ({
   id,
   iconName,
@@ -64,6 +127,9 @@ const Heartable = ({
   selected: string[];
   handleSelect: () => void;
 }) => {
+
+  console.log(id)
+  console.log(iconName)
   return (
     <Flex
       direction="column"
@@ -77,7 +143,9 @@ const Heartable = ({
         cursor: "pointer",
         height: "100px",
       }}
-      onClick={handleSelect}
+      onClick={
+        handleSelect
+      }
     >
       <Flex justify="flex-end" sx={{ width: "100%" }}>
         <ActionIcon size="xs">
