@@ -1,4 +1,4 @@
-import { Box, Flex } from "@mantine/core";
+import { Flex } from "@mantine/core";
 import Nav from "@molecules/Nav";
 import Kanban from "@templates/Kanban";
 
