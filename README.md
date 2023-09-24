@@ -41,3 +41,5 @@ We're happy to be able to present a fully-functioning full-stack web application
 
 ## What's next for DirectU 
 We aim to expand the implementation of DirectU  beyond Waterloo and UWFlow to other universities and their respective course evaluations. The service could potentially become a 3rd-party service that can be integrated into existing scheduling and timetabling products used by universities. We also want to enhance the prompt engineering to be able to produce course-specific insights in more parseable, concise chunks for better UX.
+
+[Devpost](https://devpost.com/software/untitled-project-84yezbhn7asu)
